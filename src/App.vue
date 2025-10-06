@@ -1,11 +1,17 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <!-- Root app: render About component -->
+  <About />
 </template>
 
-<style scoped></style>
+<script>
+import About from './components/about/About.vue';
+
+export default {
+  name: 'App',
+  components: { About }
+}
+</script>
+
+<style>
+/* Không cần style thêm ở đây; tất cả style đã được load từ about.css */
+</style>
