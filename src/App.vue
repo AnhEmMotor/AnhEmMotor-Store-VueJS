@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import TheFooter from './components/ui/TheFooter.vue'
-import TheHeader from './components/ui/TheHeader.vue'
+import TheFooter from './components/layout/TheFooter.vue'
+import TheHeader from './components/layout/TheHeader.vue'
 </script>
 
 <style></style>
