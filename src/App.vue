@@ -1,11 +1,16 @@
-<script setup></script>
-
 <template>
-  <h1>You did it!</h1>
-  <p>
-    Visit <a href="https://vuejs.org/" target="_blank" rel="noopener">vuejs.org</a> to read the
-    documentation
-  </p>
+  <div class="flex flex-col min-h-screen">
+    <TheHeader />
+    <main class="grow max-w-7xl mx-auto w-full pt-28 sm:pt-32 pb-10 px-5 sm:px-10">
+      <RouterView></RouterView>
+    </main>
+    <TheFooter />
+  </div>
 </template>
 
-<style scoped></style>
+<script setup>
+import TheFooter from './components/ui/TheFooter.vue'
+import TheHeader from './components/ui/TheHeader.vue'
+</script>
+
+<style></style>
