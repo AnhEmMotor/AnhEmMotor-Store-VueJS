@@ -68,7 +68,7 @@
 </template>
 
 <style scoped>
-@reference "../assets/main.css";
+@reference "../../assets/main.css";
 
 .footer-heading {
   @apply text-red-500 mb-5 text-xl font-bold;
