@@ -19,7 +19,7 @@
             class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center overflow-hidden"
           >
             <img
-              src="/src/assets/image/logo.png"
+              src="/src/assets/images/logo.png"
               alt="AnhEm Motor"
               class="w-full h-full object-cover"
             />

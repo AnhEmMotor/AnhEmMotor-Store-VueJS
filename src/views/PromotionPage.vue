@@ -80,7 +80,7 @@ onMounted(() => {
 
 <template>
   <div class="promotion-page text-gray-800">
-    <main class="pt-28 pb-16">
+    <main class="pb-16">
       <div class="container mx-auto px-4">
         <div class="text-center mb-12 fade-in-up">
           <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2">Ưu Đãi Hấp Dẫn</h1>
