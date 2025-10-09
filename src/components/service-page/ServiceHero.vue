@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import heroImage from '@/assets/images/pngtree-auto-mechanic-working-in-garage-repair-service-image_15647943.jpg'
+import heroImage from '@/../public/assets/image/index/service-page/pngtree-auto-mechanic-working-in-garage-repair-service-image_15647943.jpg'
 const scrollToServices = (e) => {
   e.preventDefault()
   const target = document.querySelector('#services')
