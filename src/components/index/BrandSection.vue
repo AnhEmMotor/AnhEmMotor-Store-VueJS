@@ -111,22 +111,22 @@ import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
 
 const brands = ref([
   {
-    img: '../../../public/assets/image/index/brand/honda.png',
+    img: '../../../assets/image/index/brand/honda.png',
     alt: 'Honda Logo',
     text: 'Thương hiệu xe máy số 1 thế giới với chất lượng và độ bền vượt trội',
   },
   {
-    img: '../../../public/assets/image/index/brand/yamaha.jpg',
+    img: '../../../assets/image/index/brand/yamaha.jpg',
     alt: 'Yamaha Logo',
     text: 'Thiết kế thể thao, công nghệ tiên tiến và âm thanh động cơ đầy sức hút',
   },
   {
-    img: '../../../public/assets/image/index/brand/suzuki.jpg',
+    img: '../../../assets/image/index/brand/suzuki.jpg',
     alt: 'Suzuki Logo',
     text: 'Nâng cao chất lượng, an toàn và thoải mái, nhân rộng niềm vui của tất cả mọi người',
   },
   {
-    img: '../../../public/assets/image/index/brand/kawasaki.png',
+    img: '../../../assets/image/index/brand/kawasaki.png',
     alt: 'Kawasaki Logo',
     text: 'Phong cách mạnh mẽ, hiệu suất vượt trội, tốc độ đỉnh cao và công nghệ đột phá',
   },

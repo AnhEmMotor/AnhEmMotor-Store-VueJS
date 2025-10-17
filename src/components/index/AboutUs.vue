@@ -3,7 +3,7 @@
     <div class="container">
       <div class="about-content">
         <div class="about-image group">
-          <img src="../../../public/assets/image/index/about.png" alt="Về AnhEm Motor" />
+          <img src="../../../assets/image/index/about.png" alt="Về AnhEm Motor" />
         </div>
 
         <div class="about-text">

@@ -43,7 +43,7 @@
   margin-left: calc(50% - 50vw);
   background:
     linear-gradient(135deg, rgba(231, 76, 60, 0), rgba(192, 57, 43, 0.1)),
-    url('../../../public/assets/image/index/index-banner-bg.png') center/cover;
+    url('../../../assets/image/index/index-banner-bg.png') center/cover;
 }
 
 .hero-overlay {

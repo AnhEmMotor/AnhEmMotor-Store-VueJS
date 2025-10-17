@@ -19,7 +19,7 @@
             class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center overflow-hidden"
           >
             <img
-              src="../../../public/assets/image/logo.png"
+              src="../../../assets/image/logo.png"
               alt="AnhEm Motor"
               class="w-full h-full object-cover"
             />
@@ -33,7 +33,7 @@
               <RouterLink to="/" class="desktop-nav-link">Trang Chủ</RouterLink>
             </li>
             <li class="whitespace-nowrap">
-              <RouterLink to="/listings" class="desktop-nav-link">Sản Phẩm</RouterLink>
+              <RouterLink to="/category" class="desktop-nav-link">Sản Phẩm</RouterLink>
             </li>
             <li class="whitespace-nowrap">
               <RouterLink to="/about" class="desktop-nav-link">Giới Thiệu</RouterLink>
