@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white shadow-sm py-4 sticky top-20 z-40">
+  <div class="bg-white shadow-sm py-4 sticky top-28 z-40">
     <div class="max-w-7xl mx-auto px-4 text-center overflow-x-auto whitespace-nowrap">
       <a
         href="#"

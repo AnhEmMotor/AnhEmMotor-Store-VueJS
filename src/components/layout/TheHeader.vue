@@ -52,6 +52,19 @@
             </li>
           </ul>
         </nav>
+
+        <button
+          class="relative p-2.5 text-red-500 rounded-lg text-xl transition-all duration-300 ease-in-out hover:bg-red-500/10"
+          @click="toggleCart"
+        >
+          <IconCart />
+          <span
+            v-if="cartItemCount > 0"
+            class="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center"
+          >
+            {{ cartItemCount }}
+          </span>
+        </button>
       </div>
     </div>
 
@@ -130,25 +143,45 @@
         </li>
       </ul>
     </nav>
+
+    <CartPanel
+      :isOpen="isCartOpen"
+      :cartItems="cartItems"
+      :cartTotal="cartTotal"
+      @close="toggleCart"
+      @updateQuantity="updateCartItemQuantity"
+      @removeItem="removeCartItem"
+    />
   </header>
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount, watch } from 'vue'
+import { ref, onBeforeUnmount, computed } from 'vue'
+import IconCart from '../icon/IconCart.vue'
+import CartPanel from '../cart/CartPanel.vue'
+import { useCart } from '@/composables/useCart'
 
 const mobileNavActive = ref(false)
+const isCartOpen = ref(false)
 
-const openMobileNav = () => {
-  mobileNavActive.value = true
+// Use central cart composable so swapping to API later is easy.
+const { cartItems, cartTotal, fetchCart, removeItem, updateQuantity } = useCart()
+
+const cartItemCount = computed(() => cartItems.value.reduce((s, i) => s + (i.quantity || 0), 0))
+
+const toggleCart = async () => {
+  // fetchCart is async so future API integration is easy
+  await fetchCart()
+  isCartOpen.value = !isCartOpen.value
 }
 
-const closeMobileNav = () => {
-  mobileNavActive.value = false
+const updateCartItemQuantity = (payload) => {
+  updateQuantity(payload)
 }
 
-watch(mobileNavActive, (isActive) => {
-  document.body.style.overflow = isActive ? 'hidden' : ''
-})
+const removeCartItem = (index) => {
+  removeItem(index)
+}
 
 onBeforeUnmount(() => {
   document.body.style.overflow = ''

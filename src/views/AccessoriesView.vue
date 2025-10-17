@@ -14,8 +14,8 @@
           v-for="product in paginatedProducts"
           :key="product.id"
           :product="product"
-          @add-to-cart="$emit('addToCart', product)"
-          @view-details="openProductDetailModal"
+          @add-to-cart="handleAddToCart"
+          @view-details="() => {}"
         />
       </div>
 
@@ -27,20 +27,6 @@
       />
     </main>
   </div>
-
-  <ProductDetailModal
-    v-if="selectedProduct"
-    :is-open="isModalOpen"
-    :product="selectedProduct"
-    @close="closeProductDetailModal"
-    @add-to-cart="handleAddToCartFromModal"
-  />
-
-  <div
-    v-if="isModalOpen"
-    class="fixed inset-0 bg-black/60 z-40"
-    @click="closeProductDetailModal"
-  ></div>
 </template>
 
 <script setup>
@@ -50,9 +36,8 @@ import CategoryNav from '@/components/accessories/CategoryNav.vue'
 import FilterSidebar from '@/components/accessories/FilterSidebar.vue'
 import ProductCard from '@/components/accessories/ProductCard.vue'
 import Pagination from '@/components/ui/BasePagination.vue'
-import ProductDetailModal from '@/components/accessories/ProductDetailModal.vue'
+import { useCart } from '@/composables/useCart'
 
-const emit = defineEmits(['addToCart'])
 const allProducts = ref(products)
 
 // Filtering Logic
@@ -121,24 +106,11 @@ watch(
   { deep: true },
 )
 
-// Product Detail Modal Logic
-const isModalOpen = ref(false)
-const selectedProduct = ref(null)
+// Cart
+const { addItem } = useCart()
 
-const openProductDetailModal = (product) => {
-  selectedProduct.value = product
-  isModalOpen.value = true
-  document.body.style.overflow = 'hidden'
-}
-
-const closeProductDetailModal = () => {
-  isModalOpen.value = false
-  selectedProduct.value = null
-  document.body.style.overflow = ''
-}
-
-const handleAddToCartFromModal = (quantity) => {
-  emit('addToCart', selectedProduct.value, quantity)
-  closeProductDetailModal()
+const handleAddToCart = (product) => {
+  // For now we simply add to local cart via composable. Easy to replace with API later.
+  addItem(product, 1)
 }
 </script>
