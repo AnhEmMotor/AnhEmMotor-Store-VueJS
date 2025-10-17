@@ -1,9 +1,11 @@
 <template>
-  <MissionSection />
-  <ServicesSection />
-  <CommitmentSection />
-  <WhyChooseUsSection />
-  <ContactSection />
+  <div class="max-w-7xl mx-auto">
+    <MissionSection />
+    <ServicesSection />
+    <CommitmentSection />
+    <WhyChooseUsSection />
+    <ContactSection />
+  </div>
   <VideoSection />
   <MapSection />
 </template>
