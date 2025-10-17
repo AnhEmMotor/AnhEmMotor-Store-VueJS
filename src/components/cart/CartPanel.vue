@@ -3,8 +3,12 @@
     <!-- Overlay covers only the area below the header (header uses h-20). This prevents covering the header. -->
     <div
       :class="[
-        'fixed left-0 right-0 top-20 bottom-0 bg-black/40 transition-opacity duration-300',
-        isOpen ? 'opacity-100 pointer-events-auto z-40' : 'opacity-0 pointer-events-none -z-10',
+        'fixed left-0 right-0 top-[100px] bottom-0 bg-black/40 transition-opacity duration-300',
+        isOpen
+          ? 'opacity-100 pointer-events-auto z-50'
+          : shouldRender
+            ? 'opacity-0 pointer-events-none z-50'
+            : 'opacity-0 pointer-events-none -z-10',
       ]"
       @click="$emit('close')"
     ></div>
@@ -12,8 +16,9 @@
     <!-- Panel starts below header (top-20) so header remains visible above it -->
     <div
       :class="[
-        'fixed top-24 right-0 bottom-0 w-screen md:w-96 bg-white transform transition-transform z-40 flex flex-col overflow-hidden',
+        'fixed top-24 right-0 bottom-0 w-screen md:w-96 bg-white transform transition-transform flex flex-col overflow-hidden',
         isOpen ? 'translate-x-0' : 'translate-x-full',
+        isOpen || shouldRender ? 'z-50' : '-z-10',
       ]"
     >
       <div
@@ -80,7 +85,7 @@
         </div>
         <BaseButton
           id="checkout-button"
-          :to="{ path: '/process' }"
+          :to="{ path: '/process-order' }"
           :disabled="cartItems.length === 0"
           @click="onCheckout"
         >
@@ -93,7 +98,7 @@
 </template>
 
 <script setup>
-defineProps({
+const { isOpen, cartItems, cartTotal } = defineProps({
   isOpen: Boolean,
   cartItems: {
     type: Array,
@@ -106,8 +111,35 @@ defineProps({
 })
 const emit = defineEmits(['close', 'updateQuantity', 'removeItem'])
 
+import { ref, watch } from 'vue'
 import BaseButton from '../ui/button/BaseButton.vue'
 import NumberStepper from '../ui/input/NumberStepper.vue'
+
+// Keep overlay/panel rendered for the duration of the close animation so
+// underlying elements can't jump above while opacity/translate transitions run.
+const shouldRender = ref(isOpen)
+let closeTimer = null
+watch(
+  () => isOpen,
+  (val) => {
+    if (val) {
+      // opening: ensure it's rendered immediately
+      if (closeTimer) {
+        clearTimeout(closeTimer)
+        closeTimer = null
+      }
+      shouldRender.value = true
+    } else {
+      // closing: keep rendered for transition duration (match CSS 300ms)
+      if (closeTimer) clearTimeout(closeTimer)
+      closeTimer = setTimeout(() => {
+        shouldRender.value = false
+        closeTimer = null
+      }, 320)
+    }
+  },
+  { immediate: true },
+)
 
 function onCheckout() {
   // close the cart panel first, then allow RouterLink to navigate

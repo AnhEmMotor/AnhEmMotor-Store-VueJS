@@ -10,13 +10,7 @@
     <slot />
   </RouterLink>
 
-  <button
-    v-else
-    v-bind="attrs"
-    :class="classes"
-    :disabled="disabled"
-    @click="onClick"
-  >
+  <button v-else v-bind="attrs" :class="classes" :disabled="disabled" @click="onClick">
     <slot />
   </button>
 </template>
@@ -34,7 +28,8 @@ const emits = defineEmits(['click'])
 
 const attrs = useAttrs()
 
-const classes = 'w-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition duration-300'
+const classes =
+  'w-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 transition duration-300'
 
 function onClick(e) {
   if (props.disabled) {

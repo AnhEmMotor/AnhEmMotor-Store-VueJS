@@ -1,6 +1,6 @@
 <template>
-  <aside class="w-64 flex-shrink-0">
-    <div class="sticky top-36 bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
+  <aside class="w-64 flex-shrink-0 mb-8 z-[41]">
+    <div class="sticky top-48 bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
       <h3 class="text-xl font-bold mb-4 text-[#de0000] border-b pb-2">
         <i class="fas fa-filter mr-2"></i>Bộ Lọc Sản Phẩm
       </h3>
