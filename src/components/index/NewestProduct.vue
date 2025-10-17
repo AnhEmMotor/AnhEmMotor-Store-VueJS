@@ -137,7 +137,7 @@ const motorcycles = ref([
     price: 36612000,
     description:
       'Kiểu dáng thời trang và màu sắc cá tính. Thân xe nhỏ gọn kế thừa từ nét thiết kế của dòng xe SH, đường nét rõ ràng, liền mạch, càng nổi bật hơn là tông màu Đen và Xám Đen độc đáo.',
-    image: 'public/assets//image/index/newest-product/vision.png',
+    image: 'assets/image/index/newest-product/vision.png',
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ const motorcycles = ref([
     price: 69000000,
     description:
       'Tái định nghĩa lại thị trường xe tay ga thể thao tại Việt Nam, NVX 155 Hoàn Toàn Mới ra mắt với khối động cơ đột phá YECVT và diện mạo thể thao đậm chất R-DNA.',
-    image: 'public/assets//image/index/newest-product/nvx.png',
+    image: 'assets/image/index/newest-product/nvx.png',
   },
   {
     id: 3,
@@ -161,7 +161,7 @@ const motorcycles = ref([
     price: 132900000,
     description:
       'Khung sườn mới, nhẹ nhưng chắc chắn, gia tăng độ ổn định và khả năng điều khiển vượt trội. Góc lái linh hoạt và hệ thống treo tối ưu giúp V-STROM vượt qua các khúc cua dễ dàng.',
-    image: 'public/assets//image/index/newest-product/vstrom.png',
+    image: 'assets/image/index/newest-product/vstrom.png',
   },
   {
     id: 4,
@@ -173,7 +173,7 @@ const motorcycles = ref([
     price: 352400000,
     description:
       'W800 khá thân thiện kể cả với những người mới chơi xe Phân khối lớn, sử dụng động cơ đôi thẳng hàng SOHC 773cc làm mát bằng không khí.',
-    image: 'public/assets//image/index/newest-product/w800.png',
+    image: 'assets/image/index/newest-product/w800.png',
   },
   {
     id: 5,
@@ -185,7 +185,7 @@ const motorcycles = ref([
     price: 86292000,
     description:
       'Thiết kế hình chữ S kế thừa kiểu dáng huyền thoại của xe Super Cub thập niên 50, mang đến sự hài hòa và mềm mại với lớp sơn nhũ ánh kim.',
-    image: 'public/assets//image/index/newest-product/cub.png',
+    image: 'assets/image/index/newest-product/cub.png',
   },
   {
     id: 6,
@@ -197,7 +197,7 @@ const motorcycles = ref([
     price: 49091000,
     description:
       'Những tính năng và công nghệ của NEOs giúp mẫu xe này trở thành phương tiện di chuyển xanh và thân thiện với môi trường.',
-    image: 'public/assets//image/index/newest-product/neos.png',
+    image: 'assets/image/index/newest-product/neos.png',
   },
 ])
 
@@ -223,22 +223,6 @@ const closeModal = () => {
 onMounted(() => {
   filteredBikes.value = motorcycles.value
 })
-
-const searchMotorcycles = (searchTerm) => {
-  isSearching.value = true
-  setTimeout(() => {
-    if (!searchTerm) {
-      filteredBikes.value = motorcycles.value
-    } else {
-      const term = searchTerm.toLowerCase()
-      filteredBikes.value = motorcycles.value.filter(
-        (bike) =>
-          bike.brand.toLowerCase().includes(term) || bike.model.toLowerCase().includes(term),
-      )
-    }
-    isSearching.value = false
-  }, 500)
-}
 </script>
 
 <style scoped>
