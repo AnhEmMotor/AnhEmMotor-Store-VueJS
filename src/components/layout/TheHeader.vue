@@ -33,7 +33,7 @@
               <RouterLink to="/" class="desktop-nav-link">Trang Chủ</RouterLink>
             </li>
             <li class="whitespace-nowrap">
-              <RouterLink to="/listings" class="desktop-nav-link">Sản Phẩm</RouterLink>
+              <RouterLink to="/category" class="desktop-nav-link">Sản Phẩm</RouterLink>
             </li>
             <li class="whitespace-nowrap">
               <RouterLink to="/about" class="desktop-nav-link">Giới Thiệu</RouterLink>
