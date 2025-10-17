@@ -54,19 +54,13 @@
                 {{ formatCurrency(item.price) }} VNĐ
               </div>
               <div class="flex items-center gap-2 mt-2">
-                <button
-                  class="w-8 h-8 rounded-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white"
-                  @click="$emit('updateQuantity', { index, change: -1 })"
-                >
-                  -
-                </button>
-                <span class="font-semibold">{{ item.quantity }}</span>
-                <button
-                  class="w-8 h-8 rounded-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white"
-                  @click="$emit('updateQuantity', { index, change: 1 })"
-                >
-                  +
-                </button>
+                <NumberStepper
+                  :model-value="item.quantity"
+                  :min="1"
+                  :max="999"
+                  @increment="$emit('updateQuantity', { index, change: 1 })"
+                  @decrement="$emit('updateQuantity', { index, change: -1 })"
+                />
               </div>
             </div>
             <button
@@ -84,14 +78,15 @@
           <span class="font-semibold text-lg">Tổng cộng:</span>
           <span class="font-bold text-honda-red text-xl">{{ formatCurrency(cartTotal) }} VNĐ</span>
         </div>
-        <button
+        <BaseButton
           id="checkout-button"
-          class="text-white w-full py-3 rounded-xl text-lg font-semibold transition duration-300 transform hover:scale-105"
+          :to="{ path: '/process' }"
           :disabled="cartItems.length === 0"
+          @click="onCheckout"
         >
           <i class="fas fa-credit-card mr-2"></i>
           Xem giỏ hàng
-        </button>
+        </BaseButton>
       </div>
     </div>
   </teleport>
@@ -109,7 +104,15 @@ defineProps({
     default: 0,
   },
 })
-defineEmits(['close', 'updateQuantity', 'removeItem'])
+const emit = defineEmits(['close', 'updateQuantity', 'removeItem'])
+
+import BaseButton from '../ui/button/BaseButton.vue'
+import NumberStepper from '../ui/input/NumberStepper.vue'
+
+function onCheckout() {
+  // close the cart panel first, then allow RouterLink to navigate
+  emit('close')
+}
 
 const formatCurrency = (amount) => {
   if (typeof amount !== 'number') return amount

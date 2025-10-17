@@ -24,13 +24,13 @@
         ></span>
       </div>
 
-      <button
-        class="w-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white py-3 rounded-xl text-sm font-semibold flex items-center justify-center gap-2 mt-auto hover:from-[#b30000] hover:to-[#800000] transform hover:-translate-y-0.5 transition-all"
+      <BaseButton
+        class="mt-auto hover:from-[#b30000] hover:to-[#800000] transform hover:-translate-y-0.5 transition-all"
         @click.stop="$emit('addToCart', product)"
       >
         <i class="fas fa-shopping-cart"></i>
         Thêm vào giỏ hàng
-      </button>
+      </BaseButton>
     </div>
   </div>
 </template>
@@ -43,6 +43,8 @@ defineProps({
   },
 })
 defineEmits(['addToCart', 'viewDetails'])
+
+import BaseButton from '../ui/button/BaseButton.vue'
 
 const formatCurrency = (amount) => {
   if (typeof amount !== 'number') return amount
