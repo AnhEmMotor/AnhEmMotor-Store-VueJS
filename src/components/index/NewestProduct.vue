@@ -223,22 +223,6 @@ const closeModal = () => {
 onMounted(() => {
   filteredBikes.value = motorcycles.value
 })
-
-const searchMotorcycles = (searchTerm) => {
-  isSearching.value = true
-  setTimeout(() => {
-    if (!searchTerm) {
-      filteredBikes.value = motorcycles.value
-    } else {
-      const term = searchTerm.toLowerCase()
-      filteredBikes.value = motorcycles.value.filter(
-        (bike) =>
-          bike.brand.toLowerCase().includes(term) || bike.model.toLowerCase().includes(term),
-      )
-    }
-    isSearching.value = false
-  }, 500)
-}
 </script>
 
 <style scoped>

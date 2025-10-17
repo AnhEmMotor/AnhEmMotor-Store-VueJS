@@ -156,7 +156,7 @@
 </template>
 
 <script setup>
-import { ref, onBeforeUnmount, computed } from 'vue'
+import { ref, onBeforeUnmount, computed, watch } from 'vue'
 import IconCart from '../icon/IconCart.vue'
 import CartPanel from '../cart/CartPanel.vue'
 import { useCart } from '@/composables/useCart'
@@ -174,6 +174,11 @@ const toggleCart = async () => {
   await fetchCart()
   isCartOpen.value = !isCartOpen.value
 }
+
+// Lock body scroll when cart is open so background can't scroll
+watch(isCartOpen, (open) => {
+  document.body.style.overflow = open ? 'hidden' : ''
+})
 
 const updateCartItemQuantity = (payload) => {
   updateQuantity(payload)
