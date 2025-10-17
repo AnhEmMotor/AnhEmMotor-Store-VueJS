@@ -52,8 +52,15 @@
 defineProps({
   cartItemCount: {
     type: Number,
+<<<<<<< HEAD
     default: 0,
   },
 })
 defineEmits(['toggleCart', 'toggleMobileNav'])
+=======
+    default: 0
+  }
+});
+defineEmits(['toggleCart', 'toggleMobileNav']);
+>>>>>>> 7f0d990eefadf423b46dcd334d47cfe6ad6ed59c
 </script>

@@ -36,6 +36,7 @@ const router = createRouter({
       component: ServicePage,
     },
     {
+<<<<<<< HEAD
       name: 'category',
       path: '/category',
       component: CategorySection,
@@ -43,6 +44,10 @@ const router = createRouter({
     {
       name: 'accessories',
       path: '/accessories',
+=======
+      name: 'list-category',
+      path: '/listings',
+>>>>>>> 7f0d990eefadf423b46dcd334d47cfe6ad6ed59c
       component: AccessoriesView,
     },
   ],
