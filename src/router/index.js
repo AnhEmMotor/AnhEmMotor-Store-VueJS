@@ -5,6 +5,7 @@ import PromotionPage from '@/views/PromotionPage.vue'
 import ServicePage from '@/views/ServicePage.vue'
 import TheIndex from '@/views/TheIndex.vue'
 import CategorySection from '@/views/CategorySection.vue'
+import AccessoriesView from '@/views/AccessoriesView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -38,6 +39,11 @@ const router = createRouter({
       name: 'category',
       path: '/category',
       component: CategorySection,
+    },
+    {
+      name: 'accessories',
+      path: '/accessories',
+      component: AccessoriesView,
     },
   ],
 })

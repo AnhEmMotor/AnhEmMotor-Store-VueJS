@@ -1,26 +1,26 @@
 <template>
-  <nav class="mobile-nav" :class="{ 'open': isOpen }">
-      <div class="mobile-nav-header">
-          <h3>Menu</h3>
-          <button class="mobile-nav-close" @click="$emit('close')">
-              <i class="fas fa-times"></i>
-          </button>
+  <transition name="slide">
+    <nav v-show="isOpen" class="fixed left-0 top-0 h-full w-64 bg-white shadow-xl z-50">
+      <div class="flex items-center justify-between p-4 border-b">
+        <h3 class="font-semibold">Menu</h3>
+        <button class="text-xl" @click="$emit('close')"><i class="fas fa-times"></i></button>
       </div>
-      <ul>
-          <li><a href="#">Trang Chủ</a></li>
-          <li><a href="#">Sản Phẩm</a></li>
-          <li><a href="#">Giới Thiệu</a></li>
-          <li><a href="#">Tin Tức-Sự Kiện</a></li>
-          <li><a href="#">Khuyến Mãi</a></li>
-          <li><a href="#">Liên Hệ</a></li>
-          <li><a href="#">Dịch Vụ</a></li>
+      <ul class="p-4 space-y-2">
+        <li><a href="#" class="block py-2">Trang Chủ</a></li>
+        <li><a href="#" class="block py-2">Sản Phẩm</a></li>
+        <li><a href="#" class="block py-2">Giới Thiệu</a></li>
+        <li><a href="#" class="block py-2">Tin Tức-Sự Kiện</a></li>
+        <li><a href="#" class="block py-2">Khuyến Mãi</a></li>
+        <li><a href="#" class="block py-2">Liên Hệ</a></li>
+        <li><a href="#" class="block py-2">Dịch Vụ</a></li>
       </ul>
-  </nav>
+    </nav>
+  </transition>
 </template>
 
 <script setup>
 defineProps({
-  isOpen: Boolean
-});
-defineEmits(['close']);
+  isOpen: Boolean,
+})
+defineEmits(['close'])
 </script>

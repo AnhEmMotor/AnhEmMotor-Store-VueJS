@@ -1,28 +1,26 @@
 <template>
-  <div
-    v-if="loading || totalPages > 0"
-    class="mt-6 flex justify-center items-center space-x-2 h-10"
-  >
+  <div v-if="loading || totalPages > 0" class="mt-8 flex justify-center items-center space-x-2">
     <div v-if="loading" class="flex items-center justify-center space-x-2">
       <div
         class="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-6 w-6"
       ></div>
       <span class="text-sm text-gray-500">Đang tải...</span>
     </div>
-    <div v-else-if="totalPages > 0" class="flex justify-center items-center space-x-2">
+
+    <div v-else-if="totalPages > 0" class="flex items-center space-x-2">
       <button
         @click="prevPage"
         :disabled="isPrevDisabled"
-        class="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-400 transition-colors duration-200"
+        class="min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-[#de0000] hover:text-[#de0000]"
       >
         Trước
       </button>
-      <div class="text-sm text-gray-700 px-2 min-w-[100px] text-center">
-        <span v-if="!isEditing" @dblclick="startEditing" class="cursor-pointer">
-          Trang {{ currentPage }} / {{ totalPages }}
-        </span>
-        <div v-else>
-          <span>Đi tới: </span>
+
+      <div class="text-sm text-gray-700 px-3 min-w-[120px] text-center">
+        <span v-if="!isEditing" @dblclick="startEditing" class="cursor-pointer"
+          >Trang {{ currentPage }} / {{ totalPages }}</span
+        >
+        <div v-else class="flex items-center justify-center gap-2">
           <input
             ref="pageInputEl"
             type="number"
@@ -32,14 +30,15 @@
             :max="totalPages"
             step="1"
             min="1"
-            class="w-16 text-center border border-gray-400 rounded-md shadow-sm focus:border-blue-500 focus:ring-blue-500"
+            class="w-20 text-center border border-gray-300 rounded-md shadow-sm focus:border-[#de0000] focus:ring-[#de0000]"
           />
         </div>
       </div>
+
       <button
         @click="nextPage"
         :disabled="isNextDisabled"
-        class="px-4 py-2 bg-gray-300 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-400 transition-colors duration-200"
+        class="min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-[#de0000] hover:text-[#de0000]"
       >
         Sau
       </button>
