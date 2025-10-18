@@ -14,7 +14,10 @@
       <button
         @click="prevPage"
         :disabled="isPrevDisabled"
-        class="min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-[#de0000] hover:text-[#de0000]"
+        :class="[
+          'min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+          !isPrevDisabled ? 'hover:border-red-600 hover:text-red-600' : '',
+        ]"
       >
         Trước
       </button>
@@ -41,7 +44,10 @@
       <button
         @click="nextPage"
         :disabled="isNextDisabled"
-        class="min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed hover:border-[#de0000] hover:text-[#de0000]"
+        :class="[
+          'min-w-[40px] h-10 px-2 rounded-lg border bg-white text-gray-700 font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed',
+          !isNextDisabled ? 'hover:border-red-600 hover:text-red-600' : '',
+        ]"
       >
         Sau
       </button>

@@ -1,10 +1,12 @@
 <template>
   <section id="services" class="py-20 bg-white">
     <div class="max-w-[1400px] mx-auto px-5">
-      <h2
-        class="section-title fade-in text-center text-[2.5rem] -mb-4 relative after:content-[''] after:absolute after:bottom-[-20px] after:left-1/2 after:-translate-x-1/2 after:w-20 after:h-1 after:bg-red-600 after:rounded-sm"
-      >
+      <h2 class="section-title fade-in text-center text-[2.5rem] -mb-4 relative">
         Dịch Vụ Của Chúng Tôi
+        <span
+          class="absolute bottom-[-20px] left-1/2 -translate-x-1/2 w-20 h-1 bg-red-600 rounded-sm"
+          aria-hidden="true"
+        ></span>
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-8 mt-16">
         <ServiceCard v-for="(service, index) in services" :key="index" :service="service" />

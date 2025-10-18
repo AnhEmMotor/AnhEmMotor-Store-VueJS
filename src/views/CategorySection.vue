@@ -5,19 +5,19 @@ import { RouterLink } from 'vue-router'
 const categories = ref([
   {
     href: 'motorcycles',
-    imgSrc: '/assets//image/categories/xe.png',
+    imgSrc: '/assets/image/categories/xe.png',
     alt: 'Xe',
     title: 'Xe',
   },
   {
     href: 'spare-parts',
-    imgSrc: '/assets//image/categories/spare-parts.png',
+    imgSrc: '/assets/image/categories/spare-parts.png',
     alt: 'Phụ tùng',
     title: 'Phụ Tùng',
   },
   {
     href: 'accessories',
-    imgSrc: '/assets//image/categories/accessories.png',
+    imgSrc: '/assets/image/categories/accessories.png',
     alt: 'Phụ kiện',
     title: 'Phụ Kiện',
   },
