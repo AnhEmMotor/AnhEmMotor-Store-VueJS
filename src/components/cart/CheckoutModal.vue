@@ -44,7 +44,7 @@
             <div
               class="border rounded-lg p-4 flex items-center gap-4 cursor-pointer hover:bg-red-50"
               :class="{ 'border-red-600 bg-red-50': selectedMethod === 'momo' }"
-                @click="emit('update:selectedMethod', 'momo')"
+              @click="emit('update:selectedMethod', 'momo')"
             >
               <div
                 class="w-16 h-16 rounded-lg flex items-center justify-center text-white bg-gradient-to-r from-pink-500 to-pink-700"
@@ -70,7 +70,7 @@
             <div
               class="border rounded-lg p-4 flex items-center gap-4 cursor-pointer hover:bg-red-50"
               :class="{ 'border-red-600 bg-red-50': selectedMethod === 'zalopay' }"
-                @click="emit('update:selectedMethod', 'zalopay')"
+              @click="emit('update:selectedMethod', 'zalopay')"
             >
               <div
                 class="w-16 h-16 rounded-lg flex items-center justify-center text-white bg-blue-600"
@@ -96,7 +96,7 @@
             <div
               class="border rounded-lg p-4 flex items-center gap-4 cursor-pointer hover:bg-red-50"
               :class="{ 'border-red-600 bg-red-50': selectedMethod === 'cod' }"
-                @click="emit('update:selectedMethod', 'cod')"
+              @click="emit('update:selectedMethod', 'cod')"
             >
               <div
                 class="w-16 h-16 rounded-lg flex items-center justify-center text-white bg-green-600"

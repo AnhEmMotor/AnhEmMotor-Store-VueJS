@@ -31,9 +31,6 @@
       @confirm="confirmPayment"
     />
 
-    <!-- Invoice Modal -->
-    <InvoiceModal :show="isInvoiceVisible" :order-data="invoiceData" @close="closeInvoice" />
-
     <!-- Cart Content -->
     <div class="cart-content">
       <div v-if="cart.length === 0" class="text-center py-16 text-gray-500">
@@ -158,7 +155,6 @@
 
 <script setup>
 import { ref, computed, watch, onMounted } from 'vue'
-import InvoiceModal from '@/components/cart/InvoiceModal.vue'
 import CheckoutModal from '@/components/cart/CheckoutModal.vue'
 import PaymentConfirmationModal from '@/components/cart/PaymentConfirmationModal.vue'
 import { useCart } from '../composables/useCart'
