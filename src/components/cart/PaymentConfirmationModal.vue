@@ -1,17 +1,19 @@
 <template>
   <teleport to="body">
-    <div v-if="show" class="payment-confirmation-modal show">
-      <div class="payment-confirmation-content">
-        <div class="success-icon">
+    <div v-if="show" class="payment-confirmation-modal" @keydown.esc="onClose" role="dialog" aria-modal="true" aria-labelledby="pc-title">
+      <div class="payment-confirmation-content" ref="content" tabindex="-1">
+        <div class="success-icon" aria-hidden="true">
           <i class="fas fa-check-circle"></i>
         </div>
-        <h3>Đặt hàng thành công!</h3>
+        <h3 id="pc-title">Đặt hàng thành công!</h3>
         <p>
           Mã đơn hàng: <strong>{{ orderId }}</strong>
         </p>
-        <div v-html="paymentInfoHtml"></div>
+
+        <div class="payment-info" v-html="paymentInfoHtml" />
+
         <div class="confirmation-actions mt-4">
-          <button class="btn-primary" @click="emit('close')">Đã hiểu</button>
+          <button ref="primaryBtn" class="btn-primary" @click="$emit('close')">Đã hiểu</button>
         </div>
       </div>
     </div>
@@ -26,7 +28,30 @@ defineProps({
 })
 
 // declare emitted events so parent listeners are accepted without warnings
-const emit = defineEmits(['close'])
+defineEmits(['close'])
+
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const content = ref(null)
+const primaryBtn = ref(null)
+
+function onClose() {
+  // emit close to parent
+  // template uses $emit so parent listener will receive it
+  // use $emit in script not available, so call via custom event on content
+  // trigger the same behavior as clicking the primary button
+  if (primaryBtn.value) primaryBtn.value.click()
+}
+
+onMounted(() => {
+  // autofocus primary button for keyboard users
+  if (primaryBtn.value) primaryBtn.value.focus()
+})
+
+// ensure Escape key closes modal when focus is inside
+onBeforeUnmount(() => {
+  // nothing to clean up for now
+})
 </script>
 
 <style scoped>
