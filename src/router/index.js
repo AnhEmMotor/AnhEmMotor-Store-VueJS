@@ -7,6 +7,7 @@ const TheIndex = () => import('@/views/TheIndex.vue')
 const CategorySection = () => import('@/views/CategorySection.vue')
 const AccessoriesView = () => import('@/views/AccessoriesView.vue')
 const MotorcyclesView = () => import('@/views/MotorcyclesView.vue')
+const SparePartsView = () => import('@/views/SparePartsView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -50,6 +51,11 @@ const router = createRouter({
       name: 'motorcycles',
       path: '/motorcycles',
       component: MotorcyclesView,
+    },
+    {
+      name: 'spare-parts',
+      path: '/spare-parts',
+      component: SparePartsView,
     },
   ],
 })
