@@ -17,18 +17,16 @@
         {{ formatCurrency(product.price) }} VNĐ
       </div>
 
-      <button
-        class="w-full bg-gradient-to-r from-[#de0000] to-[#b30000] text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:scale-105 transition transform mt-auto"
-        @click.stop="$emit('addToCart', product)"
-      >
+      <BaseButton @click.stop="$emit('addToCart', product)">
         <i class="fas fa-shopping-cart"></i>
         Thêm vào giỏ hàng
-      </button>
+      </BaseButton>
     </div>
   </div>
 </template>
 
 <script setup>
+import BaseButton from '@/components/ui/button/BaseButton.vue'
 defineProps({
   product: {
     type: Object,

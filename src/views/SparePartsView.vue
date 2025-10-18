@@ -1,35 +1,11 @@
 <template>
-  <div class="fixed top-5 right-5 z-[9999] flex flex-col gap-3">
-    <div
-      v-for="notification in notifications"
-      :key="notification.id"
-      :class="[
-        'px-4 py-3 rounded-lg text-white shadow-lg flex items-center gap-3',
-        notification.type === 'error'
-          ? 'bg-gradient-to-r from-red-500 to-red-600'
-          : 'bg-gradient-to-r from-emerald-500 to-emerald-600',
-      ]"
-    >
-      <i
-        :class="[
-          'fas',
-          notification.type === 'error' ? 'fa-exclamation-circle' : 'fa-check-circle',
-        ]"
-      ></i>
-      <div>{{ notification.message }}</div>
-    </div>
-  </div>
+  <!-- notifications removed from this view; handled globally or elsewhere -->
 
-  <ProductModal
-    :isOpen="isProductModalOpen"
-    :product="selectedProduct"
-    @close="closeProductModal"
-    @add-to-cart="handleAddToCartFromModal"
-  />
+  <!-- ProductModal removed from this view per requirement -->
 
   <div
     id="backdrop-overlay"
-    :class="[isCartPanelOpen || isProductModalOpen ? 'fixed inset-0 bg-black/60 z-40' : 'hidden']"
+    :class="[isCartPanelOpen ? 'fixed inset-0 bg-black/60 z-40' : 'hidden']"
     @click="closeAllPanels"
   ></div>
 
@@ -53,7 +29,6 @@
           :key="product.id"
           :product="product"
           @add-to-cart="handleAddToCart"
-          @view-details="openProductModal"
         />
       </div>
 
@@ -70,21 +45,18 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useCart } from '@/composables/useCart.js'
 import ProductFilter from '@/components/spare-parts/ProductFilter.vue'
 import ProductCard from '@/components/spare-parts/ProductCard.vue'
-import ProductModal from '@/components/spare-parts/ProductModal.vue'
 import BasePagination from '@/components/ui/BasePagination.vue'
 import { products as allProductsData } from '@/components/spare-parts/products-data.js'
 import CategoryNav from '@/components/layout/CategoryNav.vue'
 
 // Reactive State
 const allProducts = ref(allProductsData)
-const cart = ref([])
+const { addItem } = useCart()
 const isCartPanelOpen = ref(false)
-const isProductModalOpen = ref(false)
-const selectedProduct = ref(null)
-const notifications = ref([])
 const productFilter = ref(null) // Template ref for filter component
 
 // Filters State
@@ -131,49 +103,21 @@ watch(filteredProducts, () => {
   currentPage.value = 1
 })
 
-const showNotification = (message, type = 'success') => {
-  const id = Date.now()
-  notifications.value.push({ id, message, type })
-  setTimeout(() => {
-    notifications.value = notifications.value.filter((n) => n.id !== id)
-  }, 3000)
-}
+// notifications are handled elsewhere; local view no longer shows toasts on add
 
-const openProductModal = (product) => {
-  selectedProduct.value = product
-  isProductModalOpen.value = true
-}
-
-const closeProductModal = () => {
-  isProductModalOpen.value = false
-  selectedProduct.value = null
-}
+// product modal handled elsewhere (removed from this view)
 
 const closeAllPanels = () => {
   isCartPanelOpen.value = false
-  isProductModalOpen.value = false
 }
 
 const handleAddToCart = (product) => {
-  addToCart(product, 1)
-  isCartPanelOpen.value = true
+  addItem(product, 1)
 }
 
-const handleAddToCartFromModal = ({ product, quantity }) => {
-  addToCart(product, quantity)
-  closeProductModal()
-  isCartPanelOpen.value = true
-}
+// handleAddToCartFromModal removed (no modal in this view)
 
-const addToCart = (product, quantity) => {
-  const existingItem = cart.value.find((item) => item.id === product.id)
-  if (existingItem) {
-    existingItem.quantity += quantity
-  } else {
-    cart.value.push({ ...product, quantity })
-  }
-  showNotification(`Đã thêm ${product.name} vào giỏ hàng!`)
-}
+// addToCart logic is handled by useCart.addItem; local helper removed
 
 const applyFilters = (filters) => {
   currentFilters.value = filters
@@ -188,21 +132,5 @@ const clearFilters = () => {
 
 // pagination handled by BasePagination component (update:currentPage)
 
-// Lifecycle Hooks
-onMounted(() => {
-  // Load cart from localStorage
-  const savedCart = localStorage.getItem('hondaCart')
-  if (savedCart) {
-    cart.value = JSON.parse(savedCart)
-  }
-})
-
-// Watch cart to save to localStorage
-watch(
-  cart,
-  (newCart) => {
-    localStorage.setItem('hondaCart', JSON.stringify(newCart))
-  },
-  { deep: true },
-)
+// Lifecycle Hooks (cart persistence handled by useCart composable)
 </script>
