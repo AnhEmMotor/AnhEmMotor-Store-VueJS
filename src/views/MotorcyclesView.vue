@@ -27,27 +27,18 @@
         </button>
       </div>
 
-      <ProductList
-        :products="paginatedProducts"
-        @add-to-cart="addToCart"
-        @view-detail="openDetailModal"
-      />
+      <ProductList :products="paginatedProducts" @add-to-cart="addToCart" />
       <div class="mt-6">
         <BasePagination
           :currentPage="currentPage"
           :totalPages="totalPages"
-          @page-changed="handlePageChange"
+          @update:currentPage="handlePageChange"
         />
       </div>
     </div>
   </main>
 
-  <ProductDetailModal
-    :isOpen="isDetailModalOpen"
-    :product="selectedProduct"
-    @close="closeDetailModal"
-    @add-to-cart="addToCart"
-  />
+  <!-- ProductDetailModal removed for phase 1 -->
 </template>
 
 <script setup>
@@ -56,8 +47,9 @@ import { ref, reactive, computed, onMounted } from 'vue'
 // Import components
 import FilterSidebar from '@/components/motorcycles/FilterSidebar.vue'
 import ProductList from '@/components/motorcycles/ProductList.vue'
-import ProductDetailModal from '@/components/motorcycles/ProductDetailModal.vue'
+// ProductDetailModal removed for phase 1
 import BasePagination from '@/components/ui/BasePagination.vue'
+import { useCart } from '@/composables/useCart.js'
 
 // --- STATE MANAGEMENT ---
 
@@ -344,8 +336,8 @@ const allProducts = ref([
   },
 ])
 
-// Cart state
-const cart = ref([])
+// Cart state (use composable that persists to localStorage)
+const { addItem: addItemToCart } = useCart()
 
 // Filter and Pagination state
 const filters = reactive({
@@ -359,8 +351,7 @@ const productsPerPage = 12
 
 // Modal/Sidebar visibility state
 const isCartSidebarOpen = ref(false)
-const isDetailModalOpen = ref(false)
-const selectedProduct = ref(null)
+// product detail modal disabled for phase 1
 const isFilterSidebarOpen = ref(false)
 
 // --- COMPUTED PROPERTIES ---
@@ -398,32 +389,12 @@ const paginatedProducts = computed(() => {
 
 // Cart methods
 const addToCart = (product) => {
-  const existingItem = cart.value.find((item) => item.id === product.id)
-
-  if (existingItem) {
-    if (existingItem.quantity < 3) {
-      existingItem.quantity++
-    } else {
-      alert('Bạn chỉ có thể mua tối đa 3 chiếc cho mỗi sản phẩm.')
-    }
-  } else {
-    cart.value.push({ ...product, quantity: 1 })
-  }
-  saveCartToLocalStorage()
+  // Delegate to composable which handles merging and persistence.
+  addItemToCart(product, 1)
   isCartSidebarOpen.value = true // Open cart sidebar on add
 }
 
-// Local storage persistence
-const saveCartToLocalStorage = () => {
-  localStorage.setItem('hondaCart', JSON.stringify(cart.value))
-}
-
-const loadCartFromLocalStorage = () => {
-  const savedCart = localStorage.getItem('hondaCart')
-  if (savedCart) {
-    cart.value = JSON.parse(savedCart)
-  }
-}
+// Persistence is handled inside the composable (localStorage)
 
 // Filter and Pagination methods
 const applyFilters = (newFilters) => {
@@ -439,16 +410,6 @@ const handlePageChange = (newPage) => {
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
 
-const openDetailModal = (product) => {
-  selectedProduct.value = product
-  isDetailModalOpen.value = true
-}
-
-const closeDetailModal = () => {
-  isDetailModalOpen.value = false
-  selectedProduct.value = null
-}
-
 const toggleFilterSidebar = (state) => {
   isFilterSidebarOpen.value = state
   document.body.classList.toggle('filter-open', state)
@@ -456,6 +417,6 @@ const toggleFilterSidebar = (state) => {
 
 // --- LIFECYCLE HOOKS ---
 onMounted(() => {
-  loadCartFromLocalStorage()
+  // composable already initializes cart from localStorage if present
 })
 </script>
