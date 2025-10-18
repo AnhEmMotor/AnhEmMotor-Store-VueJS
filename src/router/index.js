@@ -1,11 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import AboutUs from '@/views/AboutUs.vue'
-import NewsView from '@/views/NewsView.vue'
-import PromotionPage from '@/views/PromotionPage.vue'
-import ServicePage from '@/views/ServicePage.vue'
-import TheIndex from '@/views/TheIndex.vue'
-import CategorySection from '@/views/CategorySection.vue'
-import AccessoriesView from '@/views/AccessoriesView.vue'
+const AboutUs = () => import('@/views/AboutUs.vue')
+const NewsView = () => import('@/views/NewsView.vue')
+const PromotionPage = () => import('@/views/PromotionPage.vue')
+const ServicePage = () => import('@/views/ServicePage.vue')
+const TheIndex = () => import('@/views/TheIndex.vue')
+const CategorySection = () => import('@/views/CategorySection.vue')
+const AccessoriesView = () => import('@/views/AccessoriesView.vue')
+const MotorcyclesView = () => import('@/views/MotorcyclesView.vue')
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -44,6 +45,11 @@ const router = createRouter({
       name: 'accessories',
       path: '/accessories',
       component: AccessoriesView,
+    },
+    {
+      name: 'motorcycles',
+      path: '/motorcycles',
+      component: MotorcyclesView,
     },
   ],
 })
