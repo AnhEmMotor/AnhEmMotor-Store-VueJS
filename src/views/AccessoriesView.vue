@@ -32,7 +32,7 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { products } from '../data/products.js'
-import CategoryNav from '@/components/accessories/CategoryNav.vue'
+import CategoryNav from '@/components/layout/CategoryNav.vue'
 import FilterSidebar from '@/components/accessories/FilterSidebar.vue'
 import ProductCard from '@/components/accessories/ProductCard.vue'
 import Pagination from '@/components/ui/BasePagination.vue'

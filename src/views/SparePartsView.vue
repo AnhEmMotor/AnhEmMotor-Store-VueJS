@@ -34,22 +34,7 @@
   ></div>
 
   <!-- Category Navigation -->
-  <div class="sticky top-20 z-40 bg-white shadow-sm">
-    <div class="max-w-7xl mx-auto px-4 text-center overflow-x-auto whitespace-nowrap py-3">
-      <a
-        href="#"
-        class="inline-block px-4 py-2 mr-2 rounded-full text-gray-600 font-medium border border-transparent hover:text-[#de0000] hover:border-[#de0000] hover:bg-white transition"
-        >Phụ kiện</a
-      >
-
-      <a
-        href="#"
-        class="inline-block px-4 py-2 rounded-full text-white font-medium bg-gradient-to-r from-[#de0000] to-[#b30000] border border-[#de0000]"
-        aria-current="page"
-        >Phụ tùng</a
-      >
-    </div>
-  </div>
+  <CategoryNav />
 
   <div class="max-w-7xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
     <ProductFilter
@@ -72,36 +57,13 @@
         />
       </div>
 
-      <div class="flex justify-center items-center space-x-2 mt-8">
-        <button
-          @click="changePage(currentPage - 1)"
-          :disabled="currentPage === 1"
-          class="px-3 py-2 border rounded-md font-semibold disabled:opacity-50"
-        >
-          &laquo; Trước
-        </button>
-
-        <button
-          v-for="page in totalPages"
-          :key="page"
-          @click="changePage(page)"
-          :class="[
-            'px-3 py-2 border rounded-md font-semibold',
-            currentPage === page
-              ? 'bg-[#de0000] text-white border-[#de0000]'
-              : 'bg-white text-gray-700',
-          ]"
-        >
-          {{ page }}
-        </button>
-
-        <button
-          @click="changePage(currentPage + 1)"
-          :disabled="currentPage === totalPages"
-          class="px-3 py-2 border rounded-md font-semibold disabled:opacity-50"
-        >
-          Sau &raquo;
-        </button>
+      <div class="mt-8">
+        <BasePagination
+          :totalPages="totalPages"
+          :currentPage="currentPage"
+          :loading="false"
+          @update:currentPage="(val) => (currentPage = val)"
+        />
       </div>
     </main>
   </div>
@@ -112,7 +74,9 @@ import { ref, computed, onMounted, watch } from 'vue'
 import ProductFilter from '@/components/spare-parts/ProductFilter.vue'
 import ProductCard from '@/components/spare-parts/ProductCard.vue'
 import ProductModal from '@/components/spare-parts/ProductModal.vue'
+import BasePagination from '@/components/ui/BasePagination.vue'
 import { products as allProductsData } from '@/components/spare-parts/products-data.js'
+import CategoryNav from '@/components/layout/CategoryNav.vue'
 
 // Reactive State
 const allProducts = ref(allProductsData)
@@ -222,11 +186,7 @@ const clearFilters = () => {
   }
 }
 
-const changePage = (page) => {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page
-  }
-}
+// pagination handled by BasePagination component (update:currentPage)
 
 // Lifecycle Hooks
 onMounted(() => {

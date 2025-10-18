@@ -1,6 +1,6 @@
 <template>
   <aside id="filter-sidebar" class="w-64 flex-shrink-0">
-    <div class="sticky top-40 bg-white p-5 rounded-xl shadow-lg border border-gray-100">
+    <div class="sticky top-40 bg-white p-5 rounded-xl shadow-lg border border-gray-100 mb-8">
       <h3 class="text-xl font-bold mb-4 text-red-600 border-b pb-2">
         <i class="fas fa-filter mr-2"></i>Bộ Lọc Sản Phẩm
       </h3>
