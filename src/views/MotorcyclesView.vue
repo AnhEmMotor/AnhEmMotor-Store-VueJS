@@ -1,35 +1,44 @@
 <template>
   <div
-    class="filter-overlay"
-    :style="{ display: isFilterSidebarOpen ? 'block' : 'none' }"
+    v-if="isFilterSidebarOpen"
+    class="fixed inset-0 bg-black/50 z-40 lg:hidden"
     @click="toggleFilterSidebar(false)"
   ></div>
-  <main class="main-container">
-    <FilterSidebar
-      :isOpen="isFilterSidebarOpen"
-      @update-filters="applyFilters"
-      @close="toggleFilterSidebar(false)"
-    />
+  <main class="max-w-7xl mx-auto px-4 lg:px-8 flex gap-6">
+    <aside class="hidden lg:block w-72">
+      <FilterSidebar
+        :isOpen="true"
+        @update-filters="applyFilters"
+        @close="toggleFilterSidebar(false)"
+      />
+    </aside>
 
-    <div class="main-content">
-      <h1 class="text-3xl font-bold text-center mb-8">Sản Phẩm Xe Máy</h1>
-      <button
-        id="mobile-filter-toggle"
-        class="mb-4 bg-gray-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-900"
-        @click="toggleFilterSidebar(true)"
-      >
-        <i class="fas fa-filter"></i> Lọc sản phẩm
-      </button>
+    <div class="flex-1">
+      <div class="flex items-center justify-between">
+        <h1 class="text-3xl font-bold text-center lg:text-left mb-6 lg:mb-8 w-full">
+          Sản Phẩm Xe Máy
+        </h1>
+        <button
+          id="mobile-filter-toggle"
+          class="ml-4 lg:hidden bg-gray-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-900"
+          @click="toggleFilterSidebar(true)"
+        >
+          <i class="fas fa-filter"></i> Lọc
+        </button>
+      </div>
+
       <ProductList
         :products="paginatedProducts"
         @add-to-cart="addToCart"
         @view-detail="openDetailModal"
       />
-      <BasePagination
-        :currentPage="currentPage"
-        :totalPages="totalPages"
-        @page-changed="handlePageChange"
-      />
+      <div class="mt-6">
+        <BasePagination
+          :currentPage="currentPage"
+          :totalPages="totalPages"
+          @page-changed="handlePageChange"
+        />
+      </div>
     </div>
   </main>
 
