@@ -38,12 +38,12 @@
 @reference '../../assets/main.css';
 
 .hero-section {
-  @apply min-h-[70vh] flex items-center text-center text-white relative overflow-hidden pt-10 mt-[-28px];
+  @apply min-h-[50vh] sm:min-h-[60vh] md:min-h-[70vh] flex items-center text-center text-white relative overflow-hidden pt-16 sm:pt-10 mt-[-28px];
   width: 100vw;
   margin-left: calc(50% - 50vw);
   background:
     linear-gradient(135deg, rgba(231, 76, 60, 0), rgba(192, 57, 43, 0.1)),
-    url('/assets/image/index/index-banner-bg.png') center/cover;
+    url('/assets/image/index/index-banner-bg.webp') center/cover;
 }
 
 .hero-overlay {
@@ -62,19 +62,19 @@
 }
 
 .hero-content h1 {
-  @apply text-5xl font-extrabold mb-5  rounded-[50px];
+  @apply text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 rounded-[50px];
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
   animation: fadeInUp 1s ease-out;
 }
 
 .hero-content p {
-  @apply text-[1.4rem] mb-10 text-white  rounded-[50px] inline-block max-w-full;
+  @apply text-base md:text-lg lg:text-[1.4rem] mb-10 text-white rounded-[50px] inline-block max-w-full;
   text-shadow: 2px 2px 10px rgba(0, 0, 0, 1);
 }
 
 /* Search Bar */
 .search-bar {
-  @apply flex max-w-[600px] mx-auto bg-white/10 rounded-[50px] p-2 backdrop-blur-[10px];
+  @apply flex flex-col sm:flex-row max-w-[600px] mx-auto bg-white/10 rounded-[50px] p-2 backdrop-blur-[10px];
   animation: fadeInUp 1s ease-out 0.4s both;
 }
 
@@ -87,7 +87,7 @@
 }
 
 .search-bar button {
-  @apply bg-white text-black border-none py-[15px] px-[30px] rounded-[50px] font-semibold cursor-pointer transition-all duration-300 ease-in-out;
+  @apply bg-white text-black border-none py-[15px] px-4 sm:px-6 md:px-[30px] rounded-[50px] font-semibold cursor-pointer transition-all duration-300 ease-in-out mt-2 sm:mt-0;
 }
 
 .search-bar button:hover {
@@ -97,7 +97,7 @@
 
 /* Hero Stats */
 .hero-stats {
-  @apply flex justify-center gap-[60px] mt-[60px] pb-10;
+  @apply flex flex-col sm:flex-row justify-center gap-4 sm:gap-8 md:gap-12 lg:gap-[60px] mt-[60px] pb-10;
   animation: fadeInUp 1s ease-out 0.6s both;
 }
 
@@ -106,11 +106,11 @@
 }
 
 .stat-number {
-  @apply text-[2.5rem] font-extrabold block;
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-[2.5rem] font-extrabold block;
 }
 
 .stat-label {
-  @apply text-base opacity-80;
+  @apply text-sm sm:text-base opacity-80;
 }
 
 /* Thêm keyframes animation nếu cần */

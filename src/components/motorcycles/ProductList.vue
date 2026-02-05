@@ -1,6 +1,6 @@
 <template>
-  <div class="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-    <p v-if="products.length === 0" class="col-span-full text-center text-gray-500">
+  <div class="grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <p v-if="products.length === 0" class="col-span-full text-center text-gray-500 text-sm sm:text-base">
       Không tìm thấy sản phẩm phù hợp.
     </p>
     <ProductCard
@@ -8,7 +8,6 @@
       :key="product.id"
       :product="product"
       @add-to-cart="emit('add-to-cart', product)"
-      @view-detail="emit('view-detail', product)"
     />
   </div>
 </template>
@@ -23,5 +22,5 @@ defineProps({
   },
 })
 
-const emit = defineEmits(['add-to-cart', 'view-detail'])
+const emit = defineEmits(['add-to-cart'])
 </script>

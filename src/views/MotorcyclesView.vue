@@ -1,11 +1,21 @@
 <template>
+  <!-- Mobile Filter Overlay -->
   <div
     v-if="isFilterSidebarOpen"
     class="fixed inset-0 bg-black/50 z-40 lg:hidden"
     @click="toggleFilterSidebar(false)"
   ></div>
-  <main class="max-w-7xl mx-auto px-4 lg:px-8 flex gap-6">
-    <aside class="hidden lg:block w-72">
+
+  <!-- Mobile Filter Sidebar - chỉ hiển thị trên mobile -->
+  <FilterSidebarMobile
+    :isOpen="isFilterSidebarOpen"
+    @update-filters="applyFilters"
+    @close="toggleFilterSidebar(false)"
+  />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex gap-4 sm:gap-6 py-8 sm:py-6">
+    <!-- Desktop Filter Sidebar - chỉ hiển thị trên desktop -->
+    <aside class="hidden lg:block w-72 flex-shrink-0">
       <FilterSidebar
         :isOpen="true"
         @update-filters="applyFilters"
@@ -13,14 +23,14 @@
       />
     </aside>
 
-    <div class="flex-1">
-      <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-center lg:text-left mb-6 lg:mb-8 w-full">
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center justify-between mt-4 sm:mt-0">
+        <h1 class="text-2xl sm:text-3xl font-bold text-center lg:text-left mb-4 sm:mb-6 w-full">
           Sản Phẩm Xe Máy
         </h1>
         <button
           id="mobile-filter-toggle"
-          class="ml-4 lg:hidden bg-gray-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-900"
+          class="ml-4 lg:hidden bg-gray-800 text-white font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md hover:bg-gray-900 text-sm sm:text-base"
           @click="toggleFilterSidebar(true)"
         >
           <i class="fas fa-filter"></i> Lọc
@@ -46,6 +56,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 
 // Import components
 import FilterSidebar from '@/components/motorcycles/FilterSidebar.vue'
+import FilterSidebarMobile from '@/components/motorcycles/FilterSidebarMobile.vue'
 import ProductList from '@/components/motorcycles/ProductList.vue'
 // ProductDetailModal removed for phase 1
 import BasePagination from '@/components/ui/BasePagination.vue'
@@ -95,7 +106,7 @@ const allProducts = ref([
     id: 'airblade',
     name: 'Air Blade 160/125',
     price: 42012000,
-    image: 'moto/airblade160.png',
+    image: 'moto/airblade160.webp',
     type: 'xe-ga',
     cc: 125,
     desc: 'Thiết kế thể thao, góc cạnh cùng động cơ eSP+ 4 van mạnh mẽ, tiết kiệm nhiên liệu.',
@@ -122,7 +133,7 @@ const allProducts = ref([
     id: 'supercub',
     name: 'Super Cub C125',
     price: 86292000,
-    image: 'moto/cupc125.png',
+    image: 'moto/cupc125.webp',
     type: 'xe-so',
     cc: 124,
     desc: 'Huyền thoại trở lại với thiết kế hoài cổ và công nghệ hiện đại.',
@@ -140,7 +151,7 @@ const allProducts = ref([
     id: 'wavealpha',
     name: 'Wave Alpha cổ điển',
     price: 18939273,
-    image: 'moto/wave alpha.png',
+    image: 'moto/wave alpha.webp',
     type: 'xe-so',
     cc: 110,
     desc: 'Mẫu xe số quốc dân, bền bỉ và tiết kiệm nhiên liệu, nay có phiên bản cổ điển.',
@@ -149,7 +160,7 @@ const allProducts = ref([
     id: 'blade',
     name: 'Blade',
     price: 18900000,
-    image: 'moto/blade.png',
+    image: 'moto/blade.webp',
     type: 'xe-so',
     cc: 110,
     desc: 'Thiết kế thể thao, nhỏ gọn, phù hợp với giới trẻ năng động.',
@@ -248,7 +259,7 @@ const allProducts = ref([
     id: 'cbr650r',
     name: 'CBR650R 2024',
     price: 264990000,
-    image: 'moto/CBR650R.png',
+    image: 'moto/CBR650R.webp',
     type: 'xe-the-thao',
     cc: 649,
     desc: 'Thiết kế Sportbike thể thao, âm thanh động cơ 4 xi-lanh đầy uy lực.',
@@ -284,7 +295,7 @@ const allProducts = ref([
     id: 'cbr150r',
     name: 'CBR150R',
     price: 72290000,
-    image: 'moto/CBR150R.png',
+    image: 'moto/CBR150R.webp',
     type: 'xe-con-tay',
     cc: 149,
     desc: 'Mẫu xe Sportbike 150cc, thiết kế lấy cảm hứng từ các đàn anh phân khối lớn.',
@@ -293,7 +304,7 @@ const allProducts = ref([
     id: 'winnerr',
     name: 'Winner R',
     price: 46160000,
-    image: 'moto/Winner.png',
+    image: 'moto/Winner.webp',
     type: 'xe-con-tay',
     cc: 150,
     desc: 'Mẫu xe côn tay thể thao, hiệu suất cao và trang bị phanh ABS an toàn.',
@@ -311,7 +322,7 @@ const allProducts = ref([
     id: 'satria',
     name: 'SATRIA F150',
     price: 53490000,
-    image: 'moto/Satria.png',
+    image: 'moto/Satria.webp',
     type: 'xe-con-tay',
     cc: 147,
     desc: 'Mẫu xe Hyper Underdone với tốc độ và khả năng tăng tốc ấn tượng.',
@@ -320,7 +331,7 @@ const allProducts = ref([
     id: 'icone',
     name: 'ICON E',
     price: 26803637,
-    image: 'moto/ICON.png',
+    image: 'moto/ICON.webp',
     type: 'xe-dien',
     cc: 0,
     desc: 'Mẫu xe máy điện với thiết kế thời trang, nhỏ gọn và thân thiện môi trường.',

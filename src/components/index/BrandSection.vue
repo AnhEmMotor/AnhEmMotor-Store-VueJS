@@ -41,15 +41,15 @@
 @reference '../../assets/main.css';
 
 .brands-section {
-  @apply w-full bg-gradient-to-br from-gray-50 to-gray-100 py-20;
+  @apply w-full bg-gradient-to-br from-gray-50 to-gray-100 py-10 sm:py-16 md:py-20;
 }
 
 .container {
-  @apply container mx-auto px-4;
+  @apply container mx-auto px-4 sm:px-6 md:px-8;
 }
 
 .brands-section h2 {
-  @apply relative mb-12 text-center text-4xl font-bold text-gray-800;
+  @apply relative mb-8 sm:mb-12 text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800;
 }
 
 .brands-section h2::after {
@@ -58,7 +58,7 @@
 }
 
 .brands-carousel-container {
-  @apply relative mx-auto max-w-7xl overflow-hidden;
+  @apply relative mx-auto overflow-hidden;
 }
 
 .brands-carousel {
@@ -66,11 +66,11 @@
 }
 
 .brand-slide {
-  @apply w-[300px] flex-shrink-0 px-4;
+  @apply w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5 flex-shrink-0 px-4;
 }
 
 .brand-card {
-  @apply relative flex h-64 flex-col justify-center overflow-hidden rounded-2xl bg-white p-8 text-center shadow-lg transition-all duration-300 ease-in-out;
+  @apply relative flex h-48 sm:h-56 md:h-64 flex-col justify-center overflow-hidden rounded-2xl bg-white p-8 text-center shadow-lg transition-all duration-300 ease-in-out;
 }
 
 .brand-card:hover {
@@ -82,7 +82,7 @@
 }
 
 .brand-logo {
-  @apply h-20 w-auto object-contain transition-all duration-300 ease-in-out;
+  @apply h-12 sm:h-16 md:h-20 w-auto aspect-square object-contain transition-all duration-300 ease-in-out;
 }
 
 .brand-card p {
@@ -136,14 +136,15 @@ const carouselRef = ref(null)
 const currentSlide = ref(0)
 const useTransition = ref(true)
 let autoSlideInterval = null
+let resizeObserver = null
+const slideWidth = ref(0)
 
-const SLIDE_WIDTH = 300
 const AUTOPLAY_DELAY = 3000
 
 const carouselBrands = computed(() => [...brands.value, ...brands.value])
 
 const carouselStyle = computed(() => ({
-  transform: `translateX(-${currentSlide.value * SLIDE_WIDTH}px)`,
+  transform: `translateX(-${currentSlide.value * slideWidth.value}px)`,
   transition: useTransition.value ? 'transform 0.5s ease-in-out' : 'none',
 }))
 
@@ -169,6 +170,12 @@ const handleTransitionEnd = () => {
   }
 }
 
+const updateSlideWidth = () => {
+  if (carouselRef.value && carouselRef.value.children.length > 0) {
+    slideWidth.value = carouselRef.value.children[0].offsetWidth
+  }
+}
+
 const startAutoSlide = () => {
   if (autoSlideInterval) clearInterval(autoSlideInterval)
   autoSlideInterval = setInterval(nextSlide, AUTOPLAY_DELAY)
@@ -181,9 +188,17 @@ const stopAutoSlide = () => {
 
 onMounted(() => {
   startAutoSlide()
+  updateSlideWidth()
+  resizeObserver = new ResizeObserver(updateSlideWidth)
+  if (carouselRef.value) {
+    resizeObserver.observe(carouselRef.value)
+  }
 })
 
 onBeforeUnmount(() => {
   stopAutoSlide()
+  if (resizeObserver && carouselRef.value) {
+    resizeObserver.unobserve(carouselRef.value)
+  }
 })
 </script>

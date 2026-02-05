@@ -1,70 +1,91 @@
+Để đáp ứng yêu cầu: **Chữ to hơn**, **Dàn trải đều (cân đối giữa màn hình)** và **Tuyệt đối không bị tràn viền**, mình sẽ thực hiện thay đổi bố cục (Layout) từ dạng "Dồn sang phải" sang dạng "Căn giữa đối xứng".
+
+Cách này giúp Menu nằm chính giữa, Logo nằm trái, Nút bấm nằm phải -> tạo cảm giác thoáng và sang trọng nhất cho Header.
+
+Dưới đây là đoạn code đã tinh chỉnh:
+
+### Các thay đổi chính:
+
+1. **Căn giữa Menu (`flex-1 justify-center`):** Thay vì dồn menu về bên phải, mình để menu chiếm khoảng không gian giữa và tự động căn giữa. Điều này giúp các mục menu "dàn trải" đẹp mắt.
+2. **Tăng cỡ chữ (`text-base`):** Đưa font chữ từ nhỏ (14px) lên tiêu chuẩn (16px) để dễ đọc và rõ ràng hơn.
+3. **Tăng khoảng cách (`gap-6` đến `gap-10`):** Tăng khoảng cách giữa các mục menu để nhìn thoáng hơn.
+4. **Ngăn tràn viền:** Sử dụng `whitespace-nowrap` kết hợp với `xl:flex` (chỉ hiện trên màn hình to) để đảm bảo không bao giờ bị vỡ layout.
+
+```html
 <template>
   <header
-    class="fixed top-0 w-full z-50 bg-gradient-to-br from-white/98 to-rose-50/95 py-2.5 shadow-lg backdrop-blur-lg transition-all duration-300 ease-in-out"
+    class="fixed top-0 w-full z-50 bg-gradient-to-br from-white/98 to-rose-50/95 py-3 shadow-lg backdrop-blur-lg transition-all duration-300 ease-in-out"
   >
-    <div class="max-w-7xl mx-auto px-5">
+    <div class="w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8">
       <div class="relative flex h-20 items-center justify-between">
-        <button
-          class="lg:hidden p-2.5 text-red-500 rounded-lg text-xl transition-all duration-300 ease-in-out hover:bg-red-500/10"
-          @click="openMobileNav"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
+        
+        <div class="flex-none flex items-center">
+             <button
+            class="xl:hidden mr-4 p-2 text-red-500 rounded-lg text-2xl transition-all hover:bg-red-500/10"
+            @click="openMobileNav"
+            >
+            <i class="fas fa-bars"></i>
+            </button>
 
-        <RouterLink
-          to="/"
-          class="flex items-center gap-4 whitespace-nowrap text-red-500 transition-transform duration-300 ease-in-out hover:scale-105"
-        >
-          <div
-            class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center overflow-hidden"
-          >
-            <img
-              src="/assets/image/logo.png"
-              alt="AnhEm Motor"
-              class="w-full h-full object-cover"
-            />
-          </div>
-          <span class="text-2xl sm:text-3xl font-extrabold text-red-500">AnhEm Motor</span>
-        </RouterLink>
+            <RouterLink
+            to="/"
+            class="flex items-center gap-3 whitespace-nowrap text-red-500 transition-transform hover:scale-105"
+            >
+            <div
+                class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center overflow-hidden shrink-0"
+            >
+                <img
+                src="/assets/image/logo.webp"
+                alt="AnhEm Motor"
+                class="w-full h-full object-cover"
+                />
+            </div>
+<span class="text-lg sm:text-2xl font-extrabold text-red-500 ml-2 block">AnhEm Motor</span>            </RouterLink>
+        </div>
 
-        <nav class="hidden lg:flex ml-auto">
-          <ul class="flex list-none gap-5 m-0 p-0">
-            <li class="whitespace-nowrap">
-              <RouterLink to="/" class="desktop-nav-link">Trang Chủ</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/category" class="desktop-nav-link">Sản Phẩm</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/about" class="desktop-nav-link">Giới Thiệu</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/news" class="desktop-nav-link">Tin Tức-Sự Kiện</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/promotion" class="desktop-nav-link">Khuyến Mãi</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/contact" class="desktop-nav-link">Liên Hệ</RouterLink>
-            </li>
-            <li class="whitespace-nowrap">
-              <RouterLink to="/service" class="desktop-nav-link">Dịch Vụ</RouterLink>
-            </li>
+        <nav class="hidden xl:flex flex-1 justify-center px-4">
+          <ul class="flex list-none gap-6 2xl:gap-10 m-0 p-0 items-center justify-center">
+            <li><RouterLink to="/" class="desktop-nav-link">Trang Chủ</RouterLink></li>
+            <li><RouterLink to="/category" class="desktop-nav-link">Sản Phẩm</RouterLink></li>
+            <li><RouterLink to="/about" class="desktop-nav-link">Giới Thiệu</RouterLink></li>
+            <li><RouterLink to="/news" class="desktop-nav-link">Tin Tức</RouterLink></li>
+            <li><RouterLink to="/promotion" class="desktop-nav-link">Khuyến Mãi</RouterLink></li>
+            <li><RouterLink to="/contact" class="desktop-nav-link">Liên Hệ</RouterLink></li>
+            <li><RouterLink to="/service" class="desktop-nav-link">Dịch Vụ</RouterLink></li>
           </ul>
         </nav>
 
-        <button
-          class="relative p-2.5 text-red-500 rounded-lg text-xl transition-all duration-300 ease-in-out hover:bg-red-500/10"
-          @click="toggleCart"
-        >
-          <IconCart />
-          <span
-            v-if="cartItemCount > 0"
-            class="absolute top-0 right-0 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center"
-          >
-            {{ cartItemCount }}
-          </span>
-        </button>
+        <div class="flex-none flex items-center gap-3 sm:gap-4">
+            
+            <div class="hidden xl:flex items-center gap-3">
+                <RouterLink 
+                    to="/login" 
+                    class="px-5 py-2.5 rounded-full font-bold text-base text-red-500 border-2 border-red-500 hover:bg-red-50 transition-all whitespace-nowrap"
+                >
+                    Đăng Nhập
+                </RouterLink>
+                <RouterLink 
+                    to="/register" 
+                    class="px-5 py-2.5 rounded-full font-bold text-base text-white bg-red-500 border-2 border-red-500 hover:bg-red-600 hover:border-red-600 shadow-md hover:shadow-lg transition-all whitespace-nowrap"
+                >
+                    Đăng Ký
+                </RouterLink>
+            </div>
+
+            <button
+              class="relative p-2.5 text-red-500 rounded-lg text-xl transition-all hover:bg-red-500/10 ml-1"
+              @click="toggleCart"
+            >
+              <IconCart />
+              <span
+                v-if="cartItemCount > 0"
+                class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white"
+              >
+                {{ cartItemCount }}
+              </span>
+            </button>
+        </div>
+
       </div>
     </div>
 
@@ -75,73 +96,44 @@
     ></div>
 
     <nav
-      class="fixed top-0 h-screen w-[280px] bg-red-500 shadow-lg z-[1100] flex flex-col transition-all duration-300 ease-in-out"
-      :class="mobileNavActive ? 'left-0' : '-left-[300px]'"
+      class="fixed top-0 h-screen w-[300px] bg-white shadow-2xl z-[1100] flex flex-col transition-all duration-300 ease-in-out"
+      :class="mobileNavActive ? 'left-0' : '-left-[320px]'"
     >
-      <div class="flex items-center justify-between border-b border-white/20 p-5">
-        <h3 class="m-0 text-2xl text-white">Menu</h3>
-        <button
-          class="cursor-pointer rounded-md border-none bg-transparent p-1 text-2xl text-white transition-all duration-300 ease-in-out hover:bg-white/10"
-          @click="closeMobileNav"
-        >
+      <div class="flex items-center justify-between border-b border-gray-100 p-5 bg-red-500">
+        <h3 class="m-0 text-2xl font-bold text-white">Menu</h3>
+        <button class="text-2xl text-white transition-all hover:rotate-90" @click="closeMobileNav">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      <ul class="m-0 flex-grow list-none bg-white p-5">
-        <li>
-          <RouterLink
-            to="/"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Trang Chủ</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            to="/listings"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Sản Phẩm</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            to="/about"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Giới Thiệu</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            to="/news"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Tin Tức-Sự Kiện</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            to="/promotion"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Khuyến Mãi</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink
-            to="/contact"
-            @click="closeMobileNav"
-            class="mobile-nav-link border-b border-gray-200"
-            >Liên Hệ</RouterLink
-          >
-        </li>
-        <li>
-          <RouterLink to="/service" @click="closeMobileNav" class="mobile-nav-link"
-            >Dịch Vụ</RouterLink
-          >
-        </li>
-      </ul>
+      
+      <div class="flex-grow overflow-y-auto">
+        <div class="p-5 flex flex-col gap-3 border-b border-gray-100 bg-gray-50">
+             <RouterLink 
+                to="/register" 
+                @click="closeMobileNav"
+                class="w-full text-center py-3 rounded-lg font-bold text-white bg-red-500 shadow-lg active:scale-95 transition-all"
+            >
+                Đăng Ký
+            </RouterLink>
+            <RouterLink 
+                to="/login" 
+                @click="closeMobileNav"
+                class="w-full text-center py-3 rounded-lg font-bold text-red-500 border-2 border-red-500 bg-white hover:bg-red-50 active:scale-95 transition-all"
+            >
+                Đăng Nhập
+            </RouterLink>
+        </div>
+
+        <ul class="m-0 list-none p-4">
+          <li><RouterLink to="/" @click="closeMobileNav" class="mobile-nav-link">Trang Chủ</RouterLink></li>
+          <li><RouterLink to="/category" @click="closeMobileNav" class="mobile-nav-link">Sản Phẩm</RouterLink></li>
+          <li><RouterLink to="/about" @click="closeMobileNav" class="mobile-nav-link">Giới Thiệu</RouterLink></li>
+          <li><RouterLink to="/news" @click="closeMobileNav" class="mobile-nav-link">Tin Tức</RouterLink></li>
+          <li><RouterLink to="/promotion" @click="closeMobileNav" class="mobile-nav-link">Khuyến Mãi</RouterLink></li>
+          <li><RouterLink to="/contact" @click="closeMobileNav" class="mobile-nav-link">Liên Hệ</RouterLink></li>
+          <li><RouterLink to="/service" @click="closeMobileNav" class="mobile-nav-link">Dịch Vụ</RouterLink></li>
+        </ul>
+      </div>
     </nav>
 
     <CartPanel
@@ -164,43 +156,34 @@ import { useCart } from '@/composables/useCart'
 const mobileNavActive = ref(false)
 const isCartOpen = ref(false)
 
-// Use central cart composable so swapping to API later is easy.
-const { cartItems, cartTotal, fetchCart, removeItem, updateQuantity } = useCart()
+const openMobileNav = () => { mobileNavActive.value = true }
+const closeMobileNav = () => { mobileNavActive.value = false }
 
+const { cartItems, cartTotal, fetchCart, removeItem, updateQuantity } = useCart()
 const cartItemCount = computed(() => cartItems.value.reduce((s, i) => s + (i.quantity || 0), 0))
 
 const toggleCart = async () => {
-  // fetchCart is async so future API integration is easy
   await fetchCart()
   isCartOpen.value = !isCartOpen.value
 }
 
-// Lock body scroll when cart is open so background can't scroll
-watch(isCartOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : ''
-})
-
-const updateCartItemQuantity = (payload) => {
-  updateQuantity(payload)
-}
-
-const removeCartItem = (index) => {
-  removeItem(index)
-}
-
-onBeforeUnmount(() => {
-  document.body.style.overflow = ''
-})
+watch(isCartOpen, (open) => { document.body.style.overflow = open ? 'hidden' : '' })
+const updateCartItemQuantity = (payload) => { updateQuantity(payload) }
+const removeCartItem = (index) => { removeItem(index) }
+onBeforeUnmount(() => { document.body.style.overflow = '' })
 </script>
 
 <style scoped>
 @reference "../../assets/main.css";
 
+/* Desktop Link: Tăng size chữ và padding để trông thoáng hơn */
 .desktop-nav-link {
-  @apply relative rounded-full py-2 px-4 text-base font-semibold text-gray-800 no-underline transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-red-500/10 hover:text-red-500;
+  @apply relative rounded-full py-2.5 px-3 2xl:px-5 text-base font-bold text-gray-700 no-underline transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-red-50 hover:text-red-600 whitespace-nowrap;
 }
 
+/* Mobile Link: Tinh chỉnh lại cho gọn */
 .mobile-nav-link {
-  @apply block rounded-none py-4 px-5 font-semibold text-gray-800 no-underline transition-all duration-300 ease-in-out hover:bg-rose-50 hover:text-red-500;
+  @apply block rounded-lg py-3.5 px-4 text-base font-semibold text-gray-700 border-b border-gray-50 no-underline transition-all duration-200 ease-in-out hover:bg-rose-50 hover:text-red-500 hover:pl-6;
 }
 </style>
+

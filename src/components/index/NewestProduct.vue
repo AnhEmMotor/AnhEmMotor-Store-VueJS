@@ -1,9 +1,9 @@
 <template>
   <section id="listings" class="listings-section py-16 md:py-24 max-w-7xl mx-auto">
-    <div class="container mx-auto px-4">
-      <div class="section-header text-center mb-12">
+    <div class="container mx-auto px-4 sm:px-6 md:px-8">
+      <div class="section-header text-center mb-8 sm:mb-12">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-3">Xe Máy Mới Nhất</h2>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p class="text-base text-gray-600 max-w-xl mx-auto">
           Khám phá những mẫu xe máy hot nhất hiện nay với giá cả cạnh tranh và chất lượng đảm bảo
         </p>
       </div>
@@ -29,7 +29,7 @@
             :src="motorcycle.image"
             :alt="`${motorcycle.brand} ${motorcycle.model}`"
             loading="lazy"
-            class="w-full h-56 object-cover"
+            class="w-full aspect-[4/3] object-cover"
           />
 
           <div class="card-content p-6 flex flex-col flex-grow">
@@ -70,23 +70,23 @@
       </button>
 
       <div class="grid md:grid-cols-2 gap-0">
-        <div class="modal-image-wrapper">
+        <div class="modal-image-wrapper rounded-t-lg md:rounded-l-lg md:rounded-t-none">
           <img
             :src="selectedMotorcycle.image"
             :alt="`${selectedMotorcycle.brand} ${selectedMotorcycle.model}`"
-            class="w-full h-full object-cover rounded-l-lg"
+            class="w-full h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none"
           />
         </div>
-        <div class="modal-text-content p-8 flex flex-col">
-          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
+        <div class="modal-text-content p-6 sm:p-8 flex flex-col">
+          <h3 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 mb-2">
             {{ selectedMotorcycle.brand }}
             {{ selectedMotorcycle.model }} ({{ selectedMotorcycle.year }})
           </h3>
-          <p class="modal-price text-3xl font-bold text-red-600 mb-6">
+          <p class="modal-price text-2xl sm:text-3xl font-bold text-red-600 mb-4 sm:mb-6">
             {{ formatCurrency(selectedMotorcycle.price) }}
           </p>
 
-          <div class="space-y-3 text-base text-gray-700">
+          <div class="space-y-2 sm:space-y-3 text-sm sm:text-base text-gray-700">
             <div class="modal-details-item">
               <strong>Hãng xe:</strong> {{ selectedMotorcycle.brand }}
             </div>
@@ -101,18 +101,18 @@
             </div>
           </div>
 
-          <p class="modal-description mt-6 text-gray-700 flex-grow">
+          <p class="modal-description mt-4 sm:mt-6 text-sm sm:text-base text-gray-700 flex-grow">
             <strong>Mô tả:</strong><br />{{ selectedMotorcycle.description }}
           </p>
 
-          <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
-              class="flex-1 py-3 px-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105"
+              class="flex-1 py-2 px-4 sm:py-3 sm:px-5 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold rounded-lg shadow-md hover:shadow-lg transition-all transform hover:scale-105 text-sm sm:text-base"
             >
               <i class="fas fa-phone mr-2"></i> Liên hệ tư vấn
             </button>
             <button
-              class="flex-1 py-3 px-5 bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:scale-105"
+              class="flex-1 py-2 px-4 sm:py-3 sm:px-5 bg-green-500 text-white font-bold rounded-lg shadow-md hover:bg-green-600 hover:shadow-lg transition-all transform hover:scale-105 text-sm sm:text-base"
             >
               <i class="fas fa-shopping-cart mr-2"></i> Đặt xe ngay
             </button>
@@ -137,7 +137,7 @@ const motorcycles = ref([
     price: 36612000,
     description:
       'Kiểu dáng thời trang và màu sắc cá tính. Thân xe nhỏ gọn kế thừa từ nét thiết kế của dòng xe SH, đường nét rõ ràng, liền mạch, càng nổi bật hơn là tông màu Đen và Xám Đen độc đáo.',
-    image: 'assets/image/index/newest-product/vision.png',
+    image: 'assets/image/index/newest-product/vision.webp',
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ const motorcycles = ref([
     price: 69000000,
     description:
       'Tái định nghĩa lại thị trường xe tay ga thể thao tại Việt Nam, NVX 155 Hoàn Toàn Mới ra mắt với khối động cơ đột phá YECVT và diện mạo thể thao đậm chất R-DNA.',
-    image: 'assets/image/index/newest-product/nvx.png',
+    image: 'assets/image/index/newest-product/nvx.webp',
   },
   {
     id: 3,
@@ -173,7 +173,7 @@ const motorcycles = ref([
     price: 352400000,
     description:
       'W800 khá thân thiện kể cả với những người mới chơi xe Phân khối lớn, sử dụng động cơ đôi thẳng hàng SOHC 773cc làm mát bằng không khí.',
-    image: 'assets/image/index/newest-product/w800.png',
+    image: 'assets/image/index/newest-product/w800.webp',
   },
   {
     id: 5,
@@ -185,7 +185,7 @@ const motorcycles = ref([
     price: 86292000,
     description:
       'Thiết kế hình chữ S kế thừa kiểu dáng huyền thoại của xe Super Cub thập niên 50, mang đến sự hài hòa và mềm mại với lớp sơn nhũ ánh kim.',
-    image: 'assets/image/index/newest-product/cub.png',
+    image: 'assets/image/index/newest-product/cub.webp',
   },
   {
     id: 6,

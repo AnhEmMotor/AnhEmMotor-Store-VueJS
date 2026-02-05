@@ -1,7 +1,7 @@
 <template>
-  <section class="container mx-auto px-4 py-12">
+  <section class="container mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16">
     <h2
-      class="text-4xl font-extrabold text-center text-primary-red mb-12 border-b-2 border-primary-light pb-4 fade-in-up"
+      class="text-3xl sm:text-4xl font-extrabold text-center text-primary-red mb-8 sm:mb-12 border-b-2 border-primary-light pb-4 fade-in-up"
     >
       TẤT CẢ TIN TỨC
     </h2>
@@ -17,16 +17,16 @@
         <img
           :src="news.image"
           :alt="news.title"
-          class="w-full md:w-1/3 lg:w-1/4 h-56 object-cover news-image rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
+          class="w-full md:w-1/3 lg:w-1/4 h-48 sm:h-56 object-cover news-image rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
         />
-        <div class="p-6 flex-1">
-          <div class="flex items-center space-x-3 text-sm mb-3">
+        <div class="p-4 sm:p-6 flex-1">
+          <div class="flex items-center space-x-3 text-xs sm:text-sm mb-3">
             <span class="text-primary-red font-bold uppercase">{{ news.category }}</span>
             <span class="text-gray-400">|</span>
             <span class="text-gray-500"><i class="far fa-clock mr-1"></i> {{ news.date }}</span>
           </div>
           <h3
-            class="news-title text-2xl font-extrabold text-dark-text hover:text-primary-red transition-colors duration-300 mb-2"
+            class="news-title text-xl sm:text-2xl font-extrabold text-dark-text hover:text-primary-red transition-colors duration-300 mb-2"
           >
             {{ news.title }}
           </h3>

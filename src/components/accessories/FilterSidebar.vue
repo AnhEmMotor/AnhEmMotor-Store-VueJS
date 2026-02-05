@@ -1,16 +1,24 @@
 <template>
-  <aside class="w-64 flex-shrink-0 mb-8 z-[41]">
-    <div class="sticky top-48 bg-white p-5 rounded-2xl shadow-lg border border-gray-100">
-      <h3 class="text-xl font-bold mb-4 text-[#de0000] border-b pb-2">
-        <i class="fas fa-filter mr-2"></i>Bộ Lọc Sản Phẩm
-      </h3>
+  <aside class="flex-shrink-0 mb-8 z-[41] h-full flex flex-col bg-white">
+    <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 h-full overflow-y-auto">
+      
+      <div class="flex justify-between items-center border-b pb-2 mb-4">
+        <h3 class="text-xl font-bold text-[#de0000]">
+          <i class="fas fa-filter mr-2"></i>Bộ Lọc
+        </h3>
+        <button 
+          @click="$emit('close')" 
+          class="md:hidden text-gray-500 hover:text-[#de0000] p-2 transition-colors"
+        >
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
 
-      <!-- Category Filter -->
       <div class="mb-6">
         <h4 class="font-semibold mb-3 text-gray-700">Danh mục</h4>
         <div class="space-y-2">
           <label
-            class="flex items-center text-sm cursor-pointer"
+            class="flex items-center text-sm cursor-pointer hover:bg-gray-50 p-1 rounded transition"
             v-for="cat in productTypes"
             :key="cat.value"
           >
@@ -27,12 +35,11 @@
         </div>
       </div>
 
-      <!-- Price Filter -->
       <div class="mb-6">
         <h4 class="font-semibold mb-3 text-gray-700">Phạm vi giá (VNĐ)</h4>
         <div class="space-y-2">
           <label
-            class="flex items-center text-sm cursor-pointer"
+            class="flex items-center text-sm cursor-pointer hover:bg-gray-50 p-1 rounded transition"
             v-for="range in priceRanges"
             :key="range.value"
           >
@@ -42,39 +49,32 @@
               :value="range.value"
               :checked="modelValue.priceRange === range.value"
               @change="updateFilter('priceRange', range.value)"
-              class="w-4 h-4 text-honda-red border-gray-300 focus:ring-honda-red"
+              class="w-4 h-4 text-[#de0000] border-gray-300 focus:ring-[#de0000]"
             />
             <span class="ml-2 text-gray-600">{{ range.label }}</span>
           </label>
         </div>
       </div>
 
-      <!-- Color Filter -->
       <div class="mb-6">
         <h4 class="font-semibold mb-3 text-gray-700">Màu sắc</h4>
         <div class="flex flex-wrap gap-2">
           <button
-            class="w-6 h-6 rounded-full border-2 flex items-center justify-center text-xs"
-            :class="
-              modelValue.color === 'all'
-                ? 'border-[#de0000] shadow-[0_0_0_6px_rgba(222,0,0,0.12)]'
-                : 'border-gray-300'
-            "
+            class="w-8 h-8 rounded-full border-2 flex items-center justify-center transition-all hover:scale-110"
+            :class="modelValue.color === 'all' ? 'border-[#de0000] shadow-[0_0_0_2px_rgba(222,0,0,0.1)]' : 'border-gray-300'"
             @click="updateFilter('color', 'all')"
+            title="Tất cả màu"
           >
             <i v-if="modelValue.color === 'all'" class="fas fa-check text-xs text-[#de0000]"></i>
+            <span v-else class="text-[10px] text-gray-500">All</span>
           </button>
 
           <button
             v-for="color in availableColors"
             :key="color"
             :style="{ backgroundColor: color }"
-            class="w-6 h-6 rounded-full border-2"
-            :class="
-              modelValue.color === color
-                ? 'border-[#de0000] shadow-[0_0_0_6px_rgba(222,0,0,0.12)]'
-                : 'border-gray-300'
-            "
+            class="w-8 h-8 rounded-full border-2 transition-all hover:scale-110"
+            :class="modelValue.color === color ? 'border-[#de0000] shadow-[0_0_0_2px_rgba(222,0,0,0.1)]' : 'border-gray-300'"
             @click="updateFilter('color', color)"
           ></button>
         </div>
@@ -82,9 +82,9 @@
 
       <button
         @click="$emit('clearFilters')"
-        class="w-full bg-gray-200 text-gray-700 py-2 rounded-lg font-medium hover:bg-gray-300 transition duration-200"
+        class="w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-medium hover:bg-gray-200 transition duration-200 mt-auto"
       >
-        Xóa Bộ Lọc
+        <i class="fas fa-sync-alt mr-2"></i> Xóa Bộ Lọc
       </button>
     </div>
   </aside>
@@ -97,7 +97,8 @@ const props = defineProps({
   products: Array,
   modelValue: Object,
 })
-const emit = defineEmits(['update:modelValue', 'clearFilters'])
+
+const emit = defineEmits(['update:modelValue', 'clearFilters', 'close'])
 
 const updateFilter = (key, value) => {
   emit('update:modelValue', { ...props.modelValue, [key]: value })
