@@ -80,17 +80,17 @@ onMounted(() => {
 
 <template>
   <div class="promotion-page text-gray-800">
-    <main class="pb-16">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-12 fade-in-up">
-          <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2">Ưu Đãi Hấp Dẫn</h1>
-          <p class="text-lg text-gray-500 max-w-2xl mx-auto">
+    <main class="pb-12 sm:pb-16 md:pb-20">
+      <div class="container mx-auto px-4 sm:px-6 md:px-8">
+        <div class="text-center mb-10 sm:mb-14 md:mb-16 fade-in-up">
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-2 pt-12 sm:pt-14 md:pt-16">Ưu Đãi Hấp Dẫn</h1>
+          <p class="text-sm sm:text-base md:text-lg text-gray-500 max-w-xl mx-auto">
             Đừng bỏ lỡ các chương trình khuyến mãi đặc biệt từ AnhEm Motor. Cập nhật ngay để nhận
             nhiều quà tặng giá trị!
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
           <PromotionCard
             v-for="promotion in promotions"
             :key="promotion.id"

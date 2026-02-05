@@ -43,11 +43,11 @@
 <style lang="css" scoped>
 @reference '../../assets/main.css';
 .container {
-  @apply max-w-7xl mx-auto px-5;
+  @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8;
 }
 
 .about-section {
-  @apply py-20 bg-gradient-to-br from-gray-50 to-rose-100;
+  @apply py-10 sm:py-16 md:py-20 bg-gradient-to-br from-gray-50 to-rose-100;
 }
 
 .about-content {
@@ -59,23 +59,23 @@
 }
 
 .about-image img {
-  @apply w-full h-auto object-cover transition-transform duration-500 ease-in-out group-hover:scale-110;
+  @apply w-full aspect-[16/9] object-cover transition-transform duration-500 ease-in-out group-hover:scale-110;
 }
 
 .about-text h2 {
-  @apply text-4xl font-bold text-rose-600 mb-6;
+  @apply text-3xl sm:text-4xl font-bold text-rose-600 mb-6;
 }
 
 .about-text p {
-  @apply text-lg text-gray-700 leading-relaxed mb-7;
+  @apply text-base sm:text-lg text-gray-700 leading-relaxed mb-5 sm:mb-7;
 }
 
 .feature-list {
-  @apply list-none space-y-3 mb-7;
+  @apply list-none space-y-3 mb-5 sm:mb-7;
 }
 
 .feature-list li {
-  @apply flex items-center gap-4 text-lg font-semibold text-gray-800;
+  @apply flex items-center gap-4 text-base sm:text-lg font-semibold text-gray-800;
 }
 
 .icon-check {
@@ -83,6 +83,6 @@
 }
 
 .cta-button {
-  @apply inline-block bg-red-500 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-red-600;
+  @apply inline-block bg-red-500 text-white font-bold py-2.5 px-6 sm:py-3 sm:px-8 rounded-full shadow-lg transition-transform transform hover:scale-105 hover:bg-red-600 text-sm sm:text-base;
 }
 </style>

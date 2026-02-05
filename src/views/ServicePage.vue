@@ -1,9 +1,8 @@
 <template>
-  <div id="app">
+  <div id="app" class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
     <MobileMenu :isOpen="mobileMenuOpen" @close="mobileMenuOpen = false" />
     <ServiceHero />
     <ServiceList />
-    <ServiceContact />
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col min-h-screen">
+  <div class="flex flex-col min-h-screen overflow-x-hidden">
     <TheHeader />
-    <main class="grow mx-auto w-full pt-28 sm:pt-32">
+    <main class="grow mx-auto w-full pt-20 sm:pt-28">
       <RouterView></RouterView>
     </main>
     <TheFooter />

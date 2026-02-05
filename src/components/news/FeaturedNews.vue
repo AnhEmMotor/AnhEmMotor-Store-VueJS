@@ -1,6 +1,6 @@
 <template>
-    <section class="container mx-auto px-4 py-16">
-        <h2 class="text-4xl font-extrabold text-center text-primary-red mb-12 border-b-2 border-primary-light pb-4 fade-in-up">
+    <section class="container mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-16">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-center text-primary-red mb-8 sm:mb-12 border-b-2 border-primary-light pb-4 fade-in-up">
             NỔI BẬT TRONG TUẦN</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -8,17 +8,17 @@
                 :style="{ 'transition-delay': `${index * 100}ms` }"
                 class="block news-card-hover bg-white rounded-xl overflow-hidden shadow-2xl border-t-4 border-primary-red transform hover:translate-y-[-5px] transition-all duration-300 ease-in-out fade-in-up">
                 <div class="overflow-hidden">
-                    <img :src="news.image" :alt="news.title" class="w-full h-48 object-cover news-image">
+                    <img :src="news.image" :alt="news.title" class="w-full h-40 sm:h-48 object-cover news-image">
                 </div>
                 <div class="p-6">
                     <span class="text-sm text-gray-500 font-medium">{{ news.date }}</span>
-                    <h3 class="news-title text-xl font-bold text-dark-text mt-2 mb-3 leading-snug transition-colors duration-300">
+                    <h3 class="news-title text-lg sm:text-xl font-bold text-dark-text mt-2 mb-3 leading-snug transition-colors duration-300">
                         {{ news.title }}
                     </h3>
                     <p class="text-gray-600 text-base line-clamp-3">
                         {{ news.description }}
                     </p>
-                    <span class="text-primary-red font-bold mt-4 inline-block text-sm hover:underline">Đọc thêm <i
+                    <span class="text-primary-red font-bold mt-4 inline-block text-xs sm:text-sm hover:underline">Đọc thêm <i
                             class="fas fa-arrow-right ml-1 text-xs"></i></span>
                 </div>
             </a>

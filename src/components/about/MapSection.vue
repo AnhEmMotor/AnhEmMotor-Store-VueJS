@@ -1,10 +1,10 @@
 <template>
-  <section class="bg-white py-10 sm:py-16 px-4 sm:px-5 mb-10">
+  <section class="bg-white py-10 sm:py-16 px-4 sm:px-6 md:px-8 mb-6 sm:mb-10">
     <div class="max-w-7xl mx-auto">
       <h2 class="text-3xl md:text-4xl text-center mb-4 font-bold text-red-500">Bản Đồ Các Cơ Sở</h2>
-      <p class="text-center text-lg text-gray-500 mb-10">Tìm cơ sở AnhEm Moto gần bạn nhất</p>
+      <p class="text-center text-lg text-gray-500 mb-8 sm:mb-10">Tìm cơ sở AnhEm Moto gần bạn nhất</p>
 
-      <div class="rounded-2xl overflow-hidden shadow-xl h-[350px] md:h-[500px] relative mb-8">
+      <div class="rounded-2xl overflow-hidden shadow-xl h-[300px] sm:h-[400px] md:h-[500px] relative mb-8">
         <iframe
           id="mapFrame"
           class="w-full h-full border-none"
@@ -16,23 +16,23 @@
         </iframe>
       </div>
 
-      <div class="mt-8 bg-white p-5 rounded-xl shadow-lg">
-        <h3 class="text-red-500 mb-5 text-center font-bold text-2xl">🗺️ Các Cơ Sở Trên Bản Đồ</h3>
+      <div class="mt-8 bg-white p-4 sm:p-5 rounded-xl shadow-lg">
+        <h3 class="text-red-500 mb-5 text-center font-bold text-xl sm:text-2xl">🗺️ Các Cơ Sở Trên Bản Đồ</h3>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <div
-            class="flex flex-col sm:flex-row items-center justify-between p-4 border-l-4 border-red-500 bg-gray-50 rounded-lg transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg text-center sm:text-left gap-2.5"
+            class="flex flex-col sm:flex-row items-center justify-between p-3 sm:p-4 border-l-4 border-red-500 bg-gray-50 rounded-lg transition-all duration-200 ease-in-out hover:-translate-y-0.5 hover:shadow-lg text-center sm:text-left gap-2 sm:gap-2.5"
             v-for="(loc, idx) in locations"
             :key="idx"
           >
             <div class="flex items-center">
               <span class="text-red-500 text-xl mr-2.5">📍</span>
               <div class="location-details">
-                <strong class="block mb-1">{{ loc.title }}</strong>
-                <small class="text-gray-600">{{ loc.address }}</small>
+                <strong class="block mb-1 text-base sm:text-lg">{{ loc.title }}</strong>
+                <small class="text-gray-600 text-sm sm:text-base">{{ loc.address }}</small>
               </div>
             </div>
             <button
-              class="bg-red-500 text-white border-none py-2 px-4 rounded-md cursor-pointer text-xs font-bold transition-all duration-300 ease-in-out hover:bg-red-600 hover:scale-105"
+              class="bg-red-500 text-white border-none py-2 px-3 sm:px-4 rounded-md cursor-pointer text-xs sm:text-sm font-bold transition-all duration-300 ease-in-out hover:bg-red-600 hover:scale-105"
               @click="searchLocation(loc.address)"
             >
               🔍 Tìm kiếm

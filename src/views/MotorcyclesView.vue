@@ -1,11 +1,21 @@
 <template>
+  <!-- Mobile Filter Overlay -->
   <div
     v-if="isFilterSidebarOpen"
     class="fixed inset-0 bg-black/50 z-40 lg:hidden"
     @click="toggleFilterSidebar(false)"
   ></div>
-  <main class="max-w-7xl mx-auto px-4 lg:px-8 flex gap-6">
-    <aside class="hidden lg:block w-72">
+
+  <!-- Mobile Filter Sidebar - chỉ hiển thị trên mobile -->
+  <FilterSidebarMobile
+    :isOpen="isFilterSidebarOpen"
+    @update-filters="applyFilters"
+    @close="toggleFilterSidebar(false)"
+  />
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 flex gap-4 sm:gap-6 py-8 sm:py-6">
+    <!-- Desktop Filter Sidebar - chỉ hiển thị trên desktop -->
+    <aside class="hidden lg:block w-72 flex-shrink-0">
       <FilterSidebar
         :isOpen="true"
         @update-filters="applyFilters"
@@ -13,14 +23,14 @@
       />
     </aside>
 
-    <div class="flex-1">
-      <div class="flex items-center justify-between">
-        <h1 class="text-3xl font-bold text-center lg:text-left mb-6 lg:mb-8 w-full">
+    <div class="flex-1 min-w-0">
+      <div class="flex items-center justify-between mt-4 sm:mt-0">
+        <h1 class="text-2xl sm:text-3xl font-bold text-center lg:text-left mb-4 sm:mb-6 w-full">
           Sản Phẩm Xe Máy
         </h1>
         <button
           id="mobile-filter-toggle"
-          class="ml-4 lg:hidden bg-gray-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-gray-900"
+          class="ml-4 lg:hidden bg-gray-800 text-white font-semibold py-1.5 px-3 sm:py-2 sm:px-4 rounded-md hover:bg-gray-900 text-sm sm:text-base"
           @click="toggleFilterSidebar(true)"
         >
           <i class="fas fa-filter"></i> Lọc
@@ -46,6 +56,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 
 // Import components
 import FilterSidebar from '@/components/motorcycles/FilterSidebar.vue'
+import FilterSidebarMobile from '@/components/motorcycles/FilterSidebarMobile.vue'
 import ProductList from '@/components/motorcycles/ProductList.vue'
 // ProductDetailModal removed for phase 1
 import BasePagination from '@/components/ui/BasePagination.vue'

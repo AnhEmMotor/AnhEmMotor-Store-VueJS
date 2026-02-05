@@ -1,6 +1,6 @@
 <template>
   <footer class="bg-gradient-to-br from-gray-800 to-slate-800 text-white pt-16 pb-5">
-    <div class="max-w-7xl mx-auto px-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
         <div class="footer-col">
           <h3 class="footer-heading">Thông Tin Liên Hệ</h3>
@@ -71,11 +71,11 @@
 @reference "../../assets/main.css";
 
 .footer-heading {
-  @apply text-red-500 mb-5 text-xl font-bold;
+  @apply text-red-500 mb-5 text-lg sm:text-xl font-bold;
 }
 
 .contact-info-item {
-  @apply text-white/80 leading-loose mb-2;
+  @apply text-white/80 leading-relaxed text-sm sm:text-base mb-2;
 }
 
 .social-icon {

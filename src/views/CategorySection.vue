@@ -25,10 +25,10 @@ const categories = ref([
 </script>
 
 <template>
-  <div class="max-w-[1400px] mx-auto px-5 mb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 mb-6 sm:mb-12 pt-16 sm:pt-18 md:pt-20">
     <div class="text-center mb-12">
       <h1 class="text-3xl md:text-4xl font-extrabold text-red-600 mb-3">Danh Mục Sản Phẩm</h1>
-      <p class="text-gray-600 max-w-2xl mx-auto">
+      <p class="text-sm sm:text-base text-gray-600 max-w-xl mx-auto">
         Khám phá bộ sưu tập xe máy đa dạng với chất lượng hàng đầu từ các thương hiệu uy tín
       </p>
     </div>
@@ -65,7 +65,7 @@ const categories = ref([
           <img
             :src="category.imgSrc"
             :alt="category.alt"
-            class="object-contain w-full h-full p-8 md:p-12 transition-transform duration-300 group-hover:scale-105"
+            class="object-contain w-full h-full p-6 sm:p-8 md:p-12 transition-transform duration-300 group-hover:scale-105"
           />
 
           <div
@@ -76,7 +76,7 @@ const categories = ref([
         </div>
 
         <div class="p-4 bg-gray-50 text-center z-10">
-          <h3 class="text-lg font-semibold text-gray-700">{{ category.title }}</h3>
+          <h3 class="text-base sm:text-lg font-semibold text-gray-700">{{ category.title }}</h3>
         </div>
       </RouterLink>
     </div>

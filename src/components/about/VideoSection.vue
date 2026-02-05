@@ -1,12 +1,12 @@
 <template>
   <section
-    class="py-10 sm:py-16 mb-10 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative w-screen left-1/2 -translate-x-1/2"
+    class="py-10 sm:py-16 mb-6 sm:mb-10 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative w-screen left-1/2 -translate-x-1/2"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
       <h2 class="text-3xl md:text-4xl text-center mb-4 font-bold text-white drop-shadow-md">
         Yamaha - Revs Your Heart
       </h2>
-      <p class="text-center text-lg text-gray-300 mb-10">
+      <p class="text-center text-lg text-gray-300 mb-8 sm:mb-10">
         Khám phá thế giới xe máy Yamaha đầy cảm hứng
       </p>
 
