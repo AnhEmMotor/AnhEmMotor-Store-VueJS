@@ -9,13 +9,23 @@
             </li>
             <li class="flex items-center">
               <svg class="w-4 h-4 text-gray-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
               </svg>
-              <router-link to="/motorcycles" class="text-gray-500 hover:text-gray-700">Xe máy</router-link>
+              <router-link to="/motorcycles" class="text-gray-500 hover:text-gray-700"
+                >Xe máy</router-link
+              >
             </li>
             <li v-if="product" class="flex items-center">
               <svg class="w-4 h-4 text-gray-400 mx-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                ></path>
               </svg>
               <span class="text-gray-900 font-medium">{{ product.name }}</span>
             </li>
@@ -27,9 +37,10 @@
     <div v-if="product" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="bg-white rounded-lg shadow-sm overflow-hidden">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 lg:p-8">
-
           <div class="space-y-4">
-            <div class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center relative">
+            <div
+              class="aspect-square bg-gray-100 rounded-lg overflow-hidden flex items-center justify-center relative"
+            >
               <img
                 :src="selectedImage || product.image"
                 :alt="product.name"
@@ -37,12 +48,18 @@
               />
             </div>
 
-            <div v-if="product.gallery && product.gallery.length > 0" class="grid grid-cols-4 gap-2">
+            <div
+              v-if="product.gallery && product.gallery.length > 0"
+              class="grid grid-cols-4 gap-2"
+            >
               <div
                 v-for="(image, index) in product.gallery"
                 :key="index"
                 class="aspect-square bg-gray-100 rounded-lg overflow-hidden cursor-pointer border-2 transition-colors"
-                :class="{'border-red-500': selectedImage === image, 'border-transparent hover:border-red-300': selectedImage !== image}"
+                :class="{
+                  'border-red-500': selectedImage === image,
+                  'border-transparent hover:border-red-300': selectedImage !== image,
+                }"
                 @click="selectedImage = image"
               >
                 <img
@@ -58,7 +75,9 @@
             <div>
               <h1 class="text-2xl lg:text-3xl font-bold text-gray-900 mb-2">{{ product.name }}</h1>
               <div class="flex items-center space-x-4">
-                <span class="text-3xl font-bold text-red-600">{{ formatPrice(product.price) }}</span>
+                <span class="text-3xl font-bold text-red-600">{{
+                  formatPrice(product.price)
+                }}</span>
                 <span class="text-sm text-gray-500">Giá niêm yết</span>
               </div>
             </div>
@@ -100,11 +119,15 @@
               </button>
 
               <div class="flex space-x-4">
-                <button class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                <button
+                  class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                >
                   <i class="fas fa-heart mr-2"></i>
                   Yêu thích
                 </button>
-                <button class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors">
+                <button
+                  class="flex-1 border border-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-50 transition-colors"
+                >
                   <i class="fas fa-share mr-2"></i>
                   Chia sẻ
                 </button>
@@ -123,7 +146,9 @@
             class="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow cursor-pointer group"
             @click="$router.push(`/product-details/${relatedProduct.id}`)"
           >
-            <div class="aspect-square bg-gray-100 p-4 group-hover:scale-105 transition-transform duration-300">
+            <div
+              class="aspect-square bg-gray-100 p-4 group-hover:scale-105 transition-transform duration-300"
+            >
               <img
                 :src="relatedProduct.image"
                 :alt="relatedProduct.name"
@@ -131,7 +156,9 @@
               />
             </div>
             <div class="p-4">
-              <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3rem]">{{ relatedProduct.name }}</h3>
+              <h3 class="font-semibold text-gray-900 mb-2 line-clamp-2 min-h-[3rem]">
+                {{ relatedProduct.name }}
+              </h3>
               <p class="text-red-600 font-bold">{{ formatPrice(relatedProduct.price) }}</p>
             </div>
           </div>
@@ -141,7 +168,9 @@
 
     <div v-else-if="loading" class="flex items-center justify-center min-h-screen">
       <div class="text-center">
-        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+        <div
+          class="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"
+        ></div>
         <p class="text-gray-600">Đang tải thông tin sản phẩm...</p>
       </div>
     </div>
@@ -188,7 +217,14 @@ const allProducts = ref([
     type: 'xe-ga',
     cc: 330,
     desc: 'Mẫu xe tay ga adventure độc đáo, mạnh mẽ và linh hoạt trên mọi địa hình.',
-    gallery: ['moto/adv/1.jpg', 'moto/adv/2.jpg', 'moto/adv/3.jpg', 'moto/adv/4.jpg', 'moto/adv/5.jpg', 'moto/adv/6.jpg'],
+    gallery: [
+      'moto/adv/1.jpg',
+      'moto/adv/2.jpg',
+      'moto/adv/3.jpg',
+      'moto/adv/4.jpg',
+      'moto/adv/5.jpg',
+      'moto/adv/6.jpg',
+    ],
     specifications: {
       engine: 'SOHC, 4 van, làm mát bằng dung dịch',
       power: '21.1 kW (28.7 PS) / 7,500 rpm',
@@ -199,8 +235,8 @@ const allProducts = ref([
       dimensions: '2,200 x 895 x 1,395 mm',
       groundClearance: '165 mm',
       seatHeight: '795 mm',
-      tires: 'Trước: 120/80-17, Sau: 150/70-17'
-    }
+      tires: 'Trước: 120/80-17, Sau: 150/70-17',
+    },
   },
   {
     id: 'sh350i',
@@ -233,7 +269,7 @@ const allProducts = ref([
     id: 'airblade',
     name: 'Air Blade 160/125',
     price: 42012000,
-    image: 'moto/airblade160.png',
+    image: 'moto/airblade160.webp',
     type: 'xe-ga',
     cc: 125,
     desc: 'Thiết kế thể thao, góc cạnh cùng động cơ eSP+ 4 van mạnh mẽ, tiết kiệm nhiên liệu.',
@@ -260,7 +296,7 @@ const allProducts = ref([
     id: 'supercub',
     name: 'Super Cub C125',
     price: 86292000,
-    image: 'moto/cupc125.png',
+    image: 'moto/cupc125.webp',
     type: 'xe-so',
     cc: 124,
     desc: 'Huyền thoại trở lại với thiết kế hoài cổ và công nghệ hiện đại.',
@@ -278,7 +314,7 @@ const allProducts = ref([
     id: 'wavealpha',
     name: 'Wave Alpha cổ điển',
     price: 18939273,
-    image: 'moto/wave alpha.png',
+    image: 'moto/wave alpha.webp',
     type: 'xe-so',
     cc: 110,
     desc: 'Mẫu xe số quốc dân, bền bỉ và tiết kiệm nhiên liệu, nay có phiên bản cổ điển.',
@@ -287,7 +323,7 @@ const allProducts = ref([
     id: 'blade',
     name: 'Blade',
     price: 18900000,
-    image: 'moto/blade.png',
+    image: 'moto/blade.webp',
     type: 'xe-so',
     cc: 110,
     desc: 'Thiết kế thể thao, nhỏ gọn, phù hợp với giới trẻ năng động.',
@@ -386,7 +422,7 @@ const allProducts = ref([
     id: 'cbr650r',
     name: 'CBR650R 2024',
     price: 264990000,
-    image: 'moto/CBR650R.png',
+    image: 'moto/CBR650R.webp',
     type: 'xe-the-thao',
     cc: 649,
     desc: 'Thiết kế Sportbike thể thao, âm thanh động cơ 4 xi-lanh đầy uy lực.',
@@ -422,7 +458,7 @@ const allProducts = ref([
     id: 'cbr150r',
     name: 'CBR150R',
     price: 72290000,
-    image: 'moto/CBR150R.png',
+    image: 'moto/CBR150R.webp',
     type: 'xe-con-tay',
     cc: 149,
     desc: 'Mẫu xe Sportbike 150cc, thiết kế lấy cảm hứng từ các đàn anh phân khối lớn.',
@@ -431,7 +467,7 @@ const allProducts = ref([
     id: 'winnerr',
     name: 'Winner X', // SỬA LỖI: Sửa tên hiển thị cho chuẩn
     price: 46160000,
-    image: 'moto/Winner.png',
+    image: 'moto/Winner.webp',
     type: 'xe-con-tay',
     cc: 150,
     desc: 'Mẫu xe côn tay thể thao, hiệu suất cao và trang bị phanh ABS an toàn.',
@@ -449,7 +485,7 @@ const allProducts = ref([
     id: 'satria',
     name: 'SATRIA F150',
     price: 53490000,
-    image: 'moto/Satria.png',
+    image: 'moto/Satria.webp',
     type: 'xe-con-tay',
     cc: 147,
     desc: 'Mẫu xe Hyper Underdone với tốc độ và khả năng tăng tốc ấn tượng.',
@@ -458,7 +494,7 @@ const allProducts = ref([
     id: 'icone',
     name: 'ICON E',
     price: 26803637,
-    image: 'moto/ICON.png',
+    image: 'moto/ICON.webp',
     type: 'xe-dien',
     cc: 0,
     desc: 'Mẫu xe máy điện với thiết kế thời trang, nhỏ gọn và thân thiện môi trường.',
@@ -478,7 +514,7 @@ const allProducts = ref([
 const relatedProducts = computed(() => {
   if (!product.value) return []
   return allProducts.value
-    .filter(p => p.type === product.value.type && p.id !== product.value.id)
+    .filter((p) => p.type === product.value.type && p.id !== product.value.id)
     .slice(0, 4)
 })
 
@@ -494,22 +530,57 @@ function getTypeLabel(type) {
     'xe-so': 'Xe số',
     'xe-con-tay': 'Xe côn tay',
     'xe-the-thao': 'Xe thể thao',
-    'xe-dien': 'Xe điện'
+    'xe-dien': 'Xe điện',
   }
   return typeMap[type] || type
 }
 
 function getBrandLabel(productName) {
-  const name = productName.toLowerCase();
+  const name = productName.toLowerCase()
 
   // SỬA LỖI: Thêm winner vào danh sách Honda
-  if (name.includes('honda') || name.includes('winner') || name.includes('cb') || name.includes('cbr') || name.includes('sh') || name.includes('air blade') || name.includes('vario') || name.includes('lead') || name.includes('future') || name.includes('wave') || name.includes('blade') || name.includes('super cub') || name.includes('adv') || name.includes('africa') || name.includes('gold wing') || name.includes('rebel') || name.includes('transalp') || name.includes('cl500')) {
+  if (
+    name.includes('honda') ||
+    name.includes('winner') ||
+    name.includes('cb') ||
+    name.includes('cbr') ||
+    name.includes('sh') ||
+    name.includes('air blade') ||
+    name.includes('vario') ||
+    name.includes('lead') ||
+    name.includes('future') ||
+    name.includes('wave') ||
+    name.includes('blade') ||
+    name.includes('super cub') ||
+    name.includes('adv') ||
+    name.includes('africa') ||
+    name.includes('gold wing') ||
+    name.includes('rebel') ||
+    name.includes('transalp') ||
+    name.includes('cl500')
+  ) {
     return 'Honda'
   }
-  if (name.includes('yamaha') || name.includes('exciter') || name.includes('sirius') || name.includes('jupiter') || name.includes('janus') || name.includes('grande') || name.includes('nvx') || name.includes('latte') || name.includes('neo')) {
+  if (
+    name.includes('yamaha') ||
+    name.includes('exciter') ||
+    name.includes('sirius') ||
+    name.includes('jupiter') ||
+    name.includes('janus') ||
+    name.includes('grande') ||
+    name.includes('nvx') ||
+    name.includes('latte') ||
+    name.includes('neo')
+  ) {
     return 'Yamaha'
   }
-  if (name.includes('suzuki') || name.includes('satria') || name.includes('v-strom') || name.includes('raider') || name.includes('burgman')) {
+  if (
+    name.includes('suzuki') ||
+    name.includes('satria') ||
+    name.includes('v-strom') ||
+    name.includes('raider') ||
+    name.includes('burgman')
+  ) {
     return 'Suzuki'
   }
   return 'Khác'
@@ -529,7 +600,7 @@ const loadProduct = (productId) => {
 
   // Giả lập delay mạng nhẹ
   setTimeout(() => {
-    product.value = allProducts.value.find(p => p.id === productId)
+    product.value = allProducts.value.find((p) => p.id === productId)
     loading.value = false
     // Cuộn lên đầu trang
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -542,11 +613,14 @@ onMounted(() => {
 })
 
 // SỬA LỖI: Watch để phát hiện thay đổi trên URL (chuyển sản phẩm)
-watch(() => route.params.id, (newId) => {
-  if (newId) {
-    loadProduct(newId)
-  }
-})
+watch(
+  () => route.params.id,
+  (newId) => {
+    if (newId) {
+      loadProduct(newId)
+    }
+  },
+)
 </script>
 
 <style scoped>

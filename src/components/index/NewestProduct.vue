@@ -137,7 +137,7 @@ const motorcycles = ref([
     price: 36612000,
     description:
       'Kiểu dáng thời trang và màu sắc cá tính. Thân xe nhỏ gọn kế thừa từ nét thiết kế của dòng xe SH, đường nét rõ ràng, liền mạch, càng nổi bật hơn là tông màu Đen và Xám Đen độc đáo.',
-    image: 'assets/image/index/newest-product/vision.png',
+    image: 'assets/image/index/newest-product/vision.webp',
   },
   {
     id: 2,
@@ -149,7 +149,7 @@ const motorcycles = ref([
     price: 69000000,
     description:
       'Tái định nghĩa lại thị trường xe tay ga thể thao tại Việt Nam, NVX 155 Hoàn Toàn Mới ra mắt với khối động cơ đột phá YECVT và diện mạo thể thao đậm chất R-DNA.',
-    image: 'assets/image/index/newest-product/nvx.png',
+    image: 'assets/image/index/newest-product/nvx.webp',
   },
   {
     id: 3,
@@ -173,7 +173,7 @@ const motorcycles = ref([
     price: 352400000,
     description:
       'W800 khá thân thiện kể cả với những người mới chơi xe Phân khối lớn, sử dụng động cơ đôi thẳng hàng SOHC 773cc làm mát bằng không khí.',
-    image: 'assets/image/index/newest-product/w800.png',
+    image: 'assets/image/index/newest-product/w800.webp',
   },
   {
     id: 5,
@@ -185,7 +185,7 @@ const motorcycles = ref([
     price: 86292000,
     description:
       'Thiết kế hình chữ S kế thừa kiểu dáng huyền thoại của xe Super Cub thập niên 50, mang đến sự hài hòa và mềm mại với lớp sơn nhũ ánh kim.',
-    image: 'assets/image/index/newest-product/cub.png',
+    image: 'assets/image/index/newest-product/cub.webp',
   },
   {
     id: 6,

@@ -35,7 +35,7 @@ Dưới đây là đoạn code đã tinh chỉnh:
                 class="w-10 h-10 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center overflow-hidden shrink-0"
             >
                 <img
-                src="/assets/image/logo.png"
+                src="/assets/image/logo.webp"
                 alt="AnhEm Motor"
                 class="w-full h-full object-cover"
                 />
